@@ -1,33 +1,23 @@
 package com.Omicronlab.Avro;
 
-import java.io.IOException;
-import java.io.StringReader;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import org.dom4j.Document;
+import org.dom4j.io.SAXReader;
 
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
+
+// http://stackoverflow.com/questions/373833/best-xml-parser-for-java/5665730#5665730
 
 public class PhoneticXmlLoader implements PhoneticLoader {
 	
-	private Document domTree = null;
+	private Document doc = null;
 	
-	PhoneticXmlLoader(String xml) throws Exception {
-		InputSource source = new InputSource(new StringReader(xml));
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        try {
-        	this.domTree = dbf.newDocumentBuilder().parse(source);
-        } catch (SAXException e) {
-        	throw new SAXException("Parsing error when building Document object from xml data.");
-        } catch (IOException e) {
-        	throw new IOException("Reading error when building Document object from xml data.");
-        } catch (ParserConfigurationException e) {
-        	throw new ParserConfigurationException("Parsing error when building Document object from xml data.");
-        }
+	PhoneticXmlLoader(String file) throws Exception {
+		File xml = new File(file);
+		SAXReader reader = new SAXReader();
+		this.doc = reader.read(xml);
 	}
 	
     public List<?> load() {

@@ -8,21 +8,25 @@ public class Avro {
 		if(args.length > 0) {
 			PhoneticXmlLoader xmlLoader = null;
 			try {
-				 xmlLoader = new PhoneticXmlLoader("conf");
-			} catch (Exception e) {
-				System.out.println("Something very unholy has just happend :|");
-			}
-			PhoneticParser parser = PhoneticParser.getInstance();
-			parser.setLoader(xmlLoader);
-			
-			String str = StringUtils.join(args, " ");
-			String output = null;
-			try {
-				output = parser.parse(str);
+				 xmlLoader = new PhoneticXmlLoader("conf/phonetic.xml");
 			} catch (Exception e) {
 				e.printStackTrace();
+				System.out.println("Something very unholy has just happend :|");
 			}
-			System.out.println(output);
+			
+			if(xmlLoader != null) {
+				PhoneticParser parser = PhoneticParser.getInstance();
+				parser.setLoader(xmlLoader);
+				
+				String str = StringUtils.join(args, " ");
+				String output = null;
+				try {
+					output = parser.parse(str);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				System.out.println(output);
+			}
 		}
 	}
 }
