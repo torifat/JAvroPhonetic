@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<paterns>
+<patterns>
 	<pattern>
 		<find>a</find>
-		<default>া</default>
+		<replace>া</replace>
 		<rules>
 			<rule>
 				<prefix class="custom">i</prefix>
@@ -19,4 +18,18 @@
 			</rule>
 		</rules>
 	</pattern>
-</paterns>
+	<pattern>
+		<find>i</find>
+		<default>ি</default>
+		<rules>
+			<rule>
+				<prefix class="vowel" />
+				<replace>ই</replace>
+			</rule>
+			<rule>
+				<prefix class="none" />
+				<replace>ই</replace>
+			</rule>
+		</rules>
+	</pattern>
+</patterns>
