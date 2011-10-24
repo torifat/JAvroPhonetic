@@ -49,29 +49,37 @@ public class PhoneticParser {
 			boolean matched = false;
 			for(Pattern pattern: patterns) {
 				start = end - pattern.getFind().length();
-				if(start >= 0) {
-					if(input.substring(start, end).equals(pattern.getFind())) {
-						prev = start -1;
-						
+				if(start >= 0 && input.substring(start, end).equals(pattern.getFind())) {
+					prev = start -1;
+					
+					for(Rule rule: pattern.getRules()) {
 						// Beginning
-						if(prev < 0 || isPunctuation(input.charAt(prev))) {
-							for(Rule rule: pattern.getRules()) {
-								if(rule.getPrefixClass().equals("none")) {
-									output = rule.getReplace() + output;
-									cur = start;
-									matched = true;
-									break;
-								}
+						if(rule.getPrefixClass().equals("none")) {
+							if(prev < 0 || isPunctuation(input.charAt(prev))) {
+								output = rule.getReplace() + output;
+								cur = start;
+								matched = true;
+								break;
 							}
 						}
-						if(matched == true) break;
-						
-						// Default
-						output = pattern.getReplace() + output;
-						cur = start;
-						matched = true;
-						break;
+						// Custom
+						else if(rule.getPrefixClass().equals("custom")) {
+							int prevStart = start - rule.getPrefix().length();
+							if(prevStart >= 0 && input.substring(prevStart, start).equals(rule.getPrefix())) {
+								output = rule.getReplace() + output;
+								cur = start;
+								matched = true;
+								break;
+							}
+						}
 					}
+					if(matched == true) break;
+					
+					// Default
+					output = pattern.getReplace() + output;
+					cur = start;
+					matched = true;
+					break;
 				}
 			}
 			
