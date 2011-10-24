@@ -2,7 +2,7 @@ package com.omicronlab.avro;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.omicronlab.avro.phonetic.Pattern;
+import com.omicronlab.avro.phonetic.*;
 
 public class PhoneticParser {
 	
@@ -45,12 +45,28 @@ public class PhoneticParser {
 		}
 		String output = "";
 		for(int cur = input.length()-1; cur>=0; --cur) {
-			int end = cur + 1, start = cur;
+			int end = cur + 1, start = cur, prev;
 			boolean matched = false;
 			for(Pattern pattern: patterns) {
 				start = end - pattern.getFind().length();
 				if(start >= 0) {
 					if(input.substring(start, end).equals(pattern.getFind())) {
+						prev = start -1;
+						
+						// Beginning
+						if(prev < 0 || isPunctuation(input.charAt(prev))) {
+							for(Rule rule: pattern.getRules()) {
+								if(rule.getPrefixClass().equals("none")) {
+									output = rule.getReplace() + output;
+									cur = start;
+									matched = true;
+									break;
+								}
+							}
+						}
+						if(matched == true) break;
+						
+						// Default
 						output = pattern.getReplace() + output;
 						cur = start;
 						matched = true;
@@ -64,6 +80,11 @@ public class PhoneticParser {
 			}
 		}
 		return output;
+	}
+	
+	private boolean isPunctuation(char c) {
+		// have to update with punctuation list
+		return (c == ' ');
 	}
 	
 }
