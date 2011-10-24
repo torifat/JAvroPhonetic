@@ -1,4 +1,4 @@
-package com.Omicronlab.Avro;
+package com.omicronlab.avro;
 
 import org.apache.commons.lang3.StringUtils;
 

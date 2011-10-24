@@ -1,7 +1,9 @@
-package com.Omicronlab.Avro;
+package com.omicronlab.avro;
 
 import java.util.List;
 
+import com.omicronlab.avro.phonetic.Pattern;
+
 public interface PhoneticLoader {
-	public List<?> load();
+	public List<Pattern> getPatterns() throws Exception;
 }
