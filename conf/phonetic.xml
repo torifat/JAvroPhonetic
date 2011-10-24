@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<paterns>
+	<pattern>
+		<find>a</find>
+		<default>া</default>
+		<rules>
+			<rule>
+				<prefix class="custom">i</prefix>
+				<replace>য়া</replace>
+			</rule>
+			<rule>
+				<prefix class="vowel" />
+				<replace>আ</replace>
+			</rule>
+			<rule>
+				<prefix class="none" />
+				<replace>আ</replace>
+			</rule>
+		</rules>
+	</pattern>
+</paterns>
