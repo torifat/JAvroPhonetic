@@ -20,7 +20,7 @@
 	</pattern>
 	<pattern>
 		<find>i</find>
-		<default>ি</default>
+		<replace>ি</replace>
 		<rules>
 			<rule>
 				<prefix class="vowel" />
@@ -31,5 +31,15 @@
 				<replace>ই</replace>
 			</rule>
 		</rules>
+	</pattern>
+	<pattern>
+		<find>m</find>
+		<replace>ম</replace>
+		<rules/>
+	</pattern>
+	<pattern>
+		<find>r</find>
+		<replace>র</replace>
+		<rules/>
 	</pattern>
 </patterns>
