@@ -43,7 +43,26 @@ public class PhoneticParser {
 		if(initialized == false) {
 			this.init();
 		}
-		String output = patterns.toString();
+		String output = "";
+		for(int cur = input.length()-1; cur>=0; --cur) {
+			int end = cur + 1, start = cur;
+			boolean matched = false;
+			for(Pattern pattern: patterns) {
+				start = end - pattern.getFind().length();
+				if(start >= 0) {
+					if(input.substring(start, end).equals(pattern.getFind())) {
+						output = pattern.getReplace() + output;
+						cur = start;
+						matched = true;
+						break;
+					}
+				}
+			}
+			
+			if(!matched) {
+				output = input.charAt(cur) + output;
+			}
+		}
 		return output;
 	}
 	
