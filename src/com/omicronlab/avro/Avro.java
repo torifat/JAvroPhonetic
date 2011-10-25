@@ -11,7 +11,7 @@ public class Avro {
 				 xmlLoader = new PhoneticXmlLoader("conf/phonetic.xml");
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("Something very unholy has just happend :|");
+				System.out.println("Something very unholy has just happened :|");
 			}
 			
 			if(xmlLoader != null) {
