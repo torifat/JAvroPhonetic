@@ -2,7 +2,7 @@
 <data>
   <vowels>aeiouAEIOU</vowels>
   <constants>bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ</constants>
-  <punctuations> .</punctuations>
+  <punctuations>. ?</punctuations>
   <patterns>
   	<pattern>
   		<find>a</find>
@@ -37,6 +37,45 @@
   		</rules>
   	</pattern>
   	<pattern>
+  		<find>o</find>
+  		<replace>ো</replace>
+  		<rules>
+  			<rule>
+  				<prefix class="vowel" />
+  				<replace>ও</replace>
+  			</rule>
+  			<rule>
+  				<prefix class="none" />
+  				<replace>ও</replace>
+  			</rule>
+  		</rules>
+  	</pattern>
+    <pattern>
+  		<find>ng</find>
+  		<replace>ং</replace>
+  		<rules/>
+  	</pattern>
+  	<pattern>
+  		<find>t</find>
+  		<replace>ত</replace>
+  		<rules/>
+  	</pattern>
+    <pattern>
+  		<find>n</find>
+  		<replace>ন</replace>
+  		<rules/>
+  	</pattern>
+    <pattern>
+  		<find>b</find>
+  		<replace>ব</replace>
+  		<rules/>
+  	</pattern>
+    <pattern>
+  		<find>v</find>
+  		<replace>ভ</replace>
+  		<rules/>
+  	</pattern>
+    <pattern>
   		<find>m</find>
   		<replace>ম</replace>
   		<rules/>
@@ -44,6 +83,21 @@
   	<pattern>
   		<find>r</find>
   		<replace>র</replace>
+  		<rules/>
+  	</pattern>
+  	<pattern>
+  		<find>l</find>
+  		<replace>ল</replace>
+  		<rules/>
+  	</pattern>
+    <pattern>
+  		<find>s</find>
+  		<replace>স</replace>
+  		<rules/>
+  	</pattern>
+    <pattern>
+  		<find>y</find>
+  		<replace>য়</replace>
   		<rules/>
   	</pattern>
   </patterns>
