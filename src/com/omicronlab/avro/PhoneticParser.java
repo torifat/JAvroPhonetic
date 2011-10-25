@@ -68,7 +68,7 @@ public class PhoneticParser {
 							}
 						}
 						// Vowel
-						if(rule.getPrefixClass().equals("vowel")) {
+						else if(rule.getPrefixClass().equals("vowel")) {
 							if(prev < 0 || isVowel(input.charAt(prev))) {
 								replace = true;
 							}
