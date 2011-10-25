@@ -9,6 +9,9 @@ public class PhoneticParser {
 	private static PhoneticParser instance = null;
 	private static PhoneticLoader loader = null;
 	private static List<Pattern> patterns;
+	private static String vowels = "";
+	private static String consonants = "";
+	private static String punctuations = "";
 	private boolean initialized = false;
 	
 	// Prevent initialization
@@ -35,7 +38,11 @@ public class PhoneticParser {
 		if(loader == null) {
 			new Exception("No PhoneticLoader loader available");
 		}
-		patterns = loader.getPatterns();
+		Data data = loader.getData();
+		patterns = data.getPatterns();
+		vowels = data.getVowels();
+		consonants = data.getConsonats();
+		punctuations = data.getPunctuations();
 		initialized = true;
 	}
 	

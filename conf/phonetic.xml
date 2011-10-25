@@ -1,45 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<patterns>
-	<pattern>
-		<find>a</find>
-		<replace>া</replace>
-		<rules>
-			<rule>
-				<prefix class="custom">i</prefix>
-				<replace>য়া</replace>
-			</rule>
-			<rule>
-				<prefix class="vowel" />
-				<replace>আ</replace>
-			</rule>
-			<rule>
-				<prefix class="none" />
-				<replace>আ</replace>
-			</rule>
-		</rules>
-	</pattern>
-	<pattern>
-		<find>i</find>
-		<replace>ি</replace>
-		<rules>
-			<rule>
-				<prefix class="vowel" />
-				<replace>ই</replace>
-			</rule>
-			<rule>
-				<prefix class="none" />
-				<replace>ই</replace>
-			</rule>
-		</rules>
-	</pattern>
-	<pattern>
-		<find>m</find>
-		<replace>ম</replace>
-		<rules/>
-	</pattern>
-	<pattern>
-		<find>r</find>
-		<replace>র</replace>
-		<rules/>
-	</pattern>
-</patterns>
+<data>
+  <vowels>aeiouAEIOU</vowels>
+  <constants>bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ</constants>
+  <punctuations> .</punctuations>
+  <patterns>
+  	<pattern>
+  		<find>a</find>
+  		<replace>া</replace>
+  		<rules>
+  			<rule>
+  				<prefix class="custom">i</prefix>
+  				<replace>য়া</replace>
+  			</rule>
+  			<rule>
+  				<prefix class="vowel" />
+  				<replace>আ</replace>
+  			</rule>
+  			<rule>
+  				<prefix class="none" />
+  				<replace>আ</replace>
+  			</rule>
+  		</rules>
+  	</pattern>
+  	<pattern>
+  		<find>i</find>
+  		<replace>ি</replace>
+  		<rules>
+  			<rule>
+  				<prefix class="vowel" />
+  				<replace>ই</replace>
+  			</rule>
+  			<rule>
+  				<prefix class="none" />
+  				<replace>ই</replace>
+  			</rule>
+  		</rules>
+  	</pattern>
+  	<pattern>
+  		<find>m</find>
+  		<replace>ম</replace>
+  		<rules/>
+  	</pattern>
+  	<pattern>
+  		<find>r</find>
+  		<replace>র</replace>
+  		<rules/>
+  	</pattern>
+  </patterns>
+</data>
