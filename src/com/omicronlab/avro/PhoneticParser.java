@@ -69,6 +69,15 @@ public class PhoneticParser {
 								break;
 							}
 						}
+						// Vowel
+						if(rule.getPrefixClass().equals("vowel")) {
+							if(prev < 0 || isVowel(input.charAt(prev))) {
+								output = rule.getReplace() + output;
+								cur = start;
+								matched = true;
+								break;
+							}
+						}
 						// Custom
 						else if(rule.getPrefixClass().equals("custom")) {
 							int prevStart = start - rule.getPrefix().length();
@@ -97,9 +106,16 @@ public class PhoneticParser {
 		return output;
 	}
 	
+	private boolean isVowel(char c) {
+		return (vowels.indexOf(c) >= 0);
+	}
+	
+	private boolean isConsonant(char c) {
+		return (consonants.indexOf(c) >= 0);
+	}
+	
 	private boolean isPunctuation(char c) {
-		// have to update with punctuation list
-		return (c == ' ');
+		return (punctuations.indexOf(c) >= 0);
 	}
 	
 }
