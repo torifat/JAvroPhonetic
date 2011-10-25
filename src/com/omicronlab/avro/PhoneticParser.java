@@ -60,34 +60,34 @@ public class PhoneticParser {
 					prev = start -1;
 					
 					for(Rule rule: pattern.getRules()) {
+						boolean replace = false;
 						// Beginning
 						if(rule.getPrefixClass().equals("none")) {
 							if(prev < 0 || isPunctuation(input.charAt(prev))) {
-								output = rule.getReplace() + output;
-								cur = start;
-								matched = true;
-								break;
+								replace = true;
 							}
 						}
 						// Vowel
 						if(rule.getPrefixClass().equals("vowel")) {
 							if(prev < 0 || isVowel(input.charAt(prev))) {
-								output = rule.getReplace() + output;
-								cur = start;
-								matched = true;
-								break;
+								replace = true;
 							}
 						}
 						// Custom
 						else if(rule.getPrefixClass().equals("custom")) {
 							int prevStart = start - rule.getPrefix().length();
 							if(prevStart >= 0 && input.substring(prevStart, start).equals(rule.getPrefix())) {
-								output = rule.getReplace() + output;
-								cur = start;
-								matched = true;
-								break;
+								replace = true;
 							}
 						}
+						
+						if(replace) {
+							output = rule.getReplace() + output;
+							cur = start;
+							matched = true;
+							break;
+						}
+						
 					}
 					if(matched == true) break;
 					
