@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <data>
 	<classes>
 		<vowel>aeiouAEIOU</vowel>
-		<consonent>bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ</consonent>
+		<consonant>bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ</consonant>
 		<punctuation>. ?</punctuation>
 	</classes>
 	<patterns>	
@@ -902,13 +902,13 @@
 			<rules>
 				<rule>
 					<find>
-						<match type="prefix" class="!consonent" />
+						<match type="prefix" scope="!consonant" />
 					</find>
 					<replace>ঐ</replace>
 				</rule>
 				<rule>
 					<find>
-						<match type="prefix" class="punctuation" />
+						<match type="prefix" scope="punctuation" />
 					</find>
 					<replace>ঐ</replace>
 				</rule>
@@ -920,13 +920,13 @@
 			<rules>
 				<rule>
 					<find>
-						<match type="prefix" class="!consonent" />
+						<match type="prefix" scope="!consonant" />
 					</find>
 					<replace>ঔ</replace>
 				</rule>
 				<rule>
 					<find>
-						<match type="prefix" class="punctuation" />
+						<match type="prefix" scope="punctuation" />
 					</find>
 					<replace>ঔ</replace>
 				</rule>
@@ -938,13 +938,13 @@
 			<rules>
 				<rule>
 					<find>
-						<match type="prefix" class="!consonent" />
+						<match type="prefix" scope="!consonant" />
 					</find>
 					<replace>ও</replace>
 				</rule>
 				<rule>
 					<find>
-						<match type="prefix" class="punctuation" />
+						<match type="prefix" scope="punctuation" />
 					</find>
 					<replace>ও</replace>
 				</rule>
@@ -1015,13 +1015,13 @@
 			<replace>ৃ</replace>
 			<rule>
 				<find>
-					<match type="prefix" class="!consonent" />
+					<match type="prefix" scope="!consonant" />
 				</find>
 				<replace>ঋ</replace>
 			</rule>
 			<rule>
 				<find>
-					<match type="prefix" class="punctuation" />
+					<match type="prefix" scope="punctuation" />
 				</find>
 				<replace>ঋ</replace>
 			</rule>
@@ -1032,10 +1032,10 @@
 			<rules>
 				<rule>
 					<find>
-						<match type="prefix" class="!consonent" />
-						<match type="suffix" class="!vowel" />
-						<match type="suffix" class="!exact">r</match> 
-						<match type="suffix" class="!punctuation" /> 
+						<match type="prefix" scope="!consonant" />
+						<match type="suffix" scope="!vowel" />
+						<match type="suffix" scope="!exact">r</match> 
+						<match type="suffix" scope="!punctuation" /> 
 						<replace>র্</replace>
 					</find>
 				</rule>
@@ -1257,15 +1257,15 @@
 			<rules>
 				<rule>
 					<find>
-						<match type="prefix" class="!consonent" />
-						<match type="suffix" class="!exact">`</match> 
+						<match type="prefix" scope="!consonant" />
+						<match type="suffix" scope="!exact">`</match> 
 						<replace>উ</replace>
 					</find>
 				</rule>
 				<rule>
 					<find>
-						<match type="prefix" class="punctuation" />
-						<match type="suffix" class="!exact">`</match> 
+						<match type="prefix" scope="punctuation" />
+						<match type="suffix" scope="!exact">`</match> 
 						<replace>উ</replace>
 					</find>
 				</rule>
@@ -1287,14 +1287,14 @@
 			<rules>
 				<rule>
 					<find>
-						<match type="prefix" class="vowel" />
-						<match type="prefix" class="!exact">o</match> 
+						<match type="prefix" scope="vowel" />
+						<match type="prefix" scope="!exact">o</match> 
 						<replace>ও</replace>
 					</find>
 				</rule>
 				<rule>
 					<find>
-						<match type="prefix" class="punctuation" />
+						<match type="prefix" scope="punctuation" />
 					</find>
 					<replace>অ</replace>
 				</rule>
@@ -1381,23 +1381,23 @@
 			<rules>
 				<rule>
 					<find>
-						<match type="prefix" class="punctuation" />
-						<match type="suffix" class="!exact">`</match>
+						<match type="prefix" scope="punctuation" />
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>আ</replace>
 				</rule>
 				<rule>
 					<find>
-						<match type="prefix" class="!consonent" />
-						<match type="prefix" class="!exact">a</match>
-						<match type="suffix" class="!exact">`</match>
+						<match type="prefix" scope="!consonant" />
+						<match type="prefix" scope="!exact">a</match>
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>য়া</replace>
 				</rule>
 				<rule>
 					<find>
-						<match type="prefix" class="exact">a</match>
-						<match type="suffix" class="!exact">`</match>
+						<match type="prefix" scope="exact">a</match>
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>আ</replace>
 				</rule>
@@ -1414,15 +1414,15 @@
 			<rules>
 				<rule>
 					<find>
-						<match type="prefix" class="!consonent" />
-						<match type="suffix" class="!exact">`</match>
+						<match type="prefix" scope="!consonant" />
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>ই</replace>
 				</rule>
 				<rule>
 					<find>
-						<match type="prefix" class="punctuation" />
-						<match type="suffix" class="!exact">`</match>
+						<match type="prefix" scope="punctuation" />
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>ই</replace>
 				</rule>
@@ -1439,15 +1439,15 @@
 			<rules>
 				<rule>
 					<find>
-						<match type="prefix" class="!consonent" />
-						<match type="suffix" class="!exact">`</match>
+						<match type="prefix" scope="!consonant" />
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>ঈ</replace>
 				</rule>
 				<rule>
 					<find>
-						<match type="prefix" class="punctuation" />
-						<match type="suffix" class="!exact">`</match>
+						<match type="prefix" scope="punctuation" />
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>ঈ</replace>
 				</rule>
@@ -1464,15 +1464,15 @@
 			<rules>
 				<rule>
 					<find>
-						<match type="prefix" class="!consonent" />
-						<match type="suffix" class="!exact">`</match>
+						<match type="prefix" scope="!consonant" />
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>উ</replace>
 				</rule>
 				<rule>
 					<find>
-						<match type="prefix" class="punctuation" />
-						<match type="suffix" class="!exact">`</match>
+						<match type="prefix" scope="punctuation" />
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>উ</replace>
 				</rule>
@@ -1489,15 +1489,15 @@
 			<rules>
 				<rule>
 					<find>
-						<match type="prefix" class="!consonent" />
-						<match type="suffix" class="!exact">`</match>
+						<match type="prefix" scope="!consonant" />
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>ঊ</replace>
 				</rule>
 				<rule>
 					<find>
-						<match type="prefix" class="punctuation" />
-						<match type="suffix" class="!exact">`</match>
+						<match type="prefix" scope="punctuation" />
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>ঊ</replace>
 				</rule>
@@ -1514,15 +1514,15 @@
 			<rules>
 				<rule>
 					<find>
-						<match type="prefix" class="!consonent" />
-						<match type="suffix" class="!exact">`</match>
+						<match type="prefix" scope="!consonant" />
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>ঈ</replace>
 				</rule>
 				<rule>
 					<find>
-						<match type="prefix" class="punctuation" />
-						<match type="suffix" class="!exact">`</match>
+						<match type="prefix" scope="punctuation" />
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>ঈ</replace>
 				</rule>
@@ -1539,15 +1539,15 @@
 			<rules>
 				<rule>
 					<find>
-						<match type="prefix" class="!consonent" />
-						<match type="suffix" class="!exact">`</match>
+						<match type="prefix" scope="!consonant" />
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>এ</replace>
 				</rule>
 				<rule>
 					<find>
-						<match type="prefix" class="punctuation" />
-						<match type="suffix" class="!exact">`</match>
+						<match type="prefix" scope="punctuation" />
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>এ</replace>
 				</rule>

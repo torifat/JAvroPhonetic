@@ -21,19 +21,24 @@ public class PhoneticXmlLoader implements PhoneticLoader {
     	digester.setValidating(false);
     	
     	digester.addObjectCreate("data", Data.class);
-    	digester.addBeanPropertySetter("data/vowels", "vowels");
-        digester.addBeanPropertySetter("data/consonants", "consonants");
-        digester.addBeanPropertySetter("data/punctuations", "punctuations");
+    	digester.addBeanPropertySetter("data/classes/vowel", "vowel");
+        digester.addBeanPropertySetter("data/classes/consonant", "consonant");
+        digester.addBeanPropertySetter("data/classes/punctuation", "punctuation");
         
-    	// digester.addObjectCreate("data/patterns", ArrayList.class);
-        digester.addObjectCreate("data/patterns/pattern", Pattern.class);
+    	digester.addObjectCreate("data/patterns/pattern", Pattern.class);
         digester.addBeanPropertySetter("data/patterns/pattern/find", "find");
         digester.addBeanPropertySetter("data/patterns/pattern/replace", "replace");
         
         digester.addObjectCreate("data/patterns/pattern/rules/rule", Rule.class);
-        digester.addSetProperties("data/patterns/pattern/rules/rule/prefix", "class", "prefixClass");
-        digester.addBeanPropertySetter("data/patterns/pattern/rules/rule/prefix", "prefix");
         digester.addBeanPropertySetter("data/patterns/pattern/rules/rule/replace", "replace");
+        
+        digester.addObjectCreate("data/patterns/pattern/rules/rule/find/match", Match.class);
+        digester.addBeanPropertySetter("data/patterns/pattern/rules/rule/find/match", "value");
+        digester.addSetProperties("data/patterns/pattern/rules/rule/find/match", "type", "type");
+        digester.addSetProperties("data/patterns/pattern/rules/rule/find/match", "scope", "scope");
+        
+        digester.addSetNext("data/patterns/pattern/rules/rule/find/match", "addMatch");
+        
         digester.addSetNext("data/patterns/pattern/rules/rule", "addRule");
         
         digester.addSetNext("data/patterns/pattern", "addPattern");

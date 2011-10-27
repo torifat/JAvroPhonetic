@@ -25,6 +25,8 @@ public class Avro {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+
+				System.out.println(str);
 				System.out.println(output);
 			}
 		}

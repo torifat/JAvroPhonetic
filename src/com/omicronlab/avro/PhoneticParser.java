@@ -2,6 +2,8 @@ package com.omicronlab.avro;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+
 import com.omicronlab.avro.phonetic.*;
 
 public class PhoneticParser {
@@ -9,9 +11,9 @@ public class PhoneticParser {
 	private static PhoneticParser instance = null;
 	private static PhoneticLoader loader = null;
 	private static List<Pattern> patterns;
-	private static String vowels = "";
-	private static String consonants = "";
-	private static String punctuations = "";
+	private static String vowel = "";
+	private static String consonant = "";
+	private static String punctuation = "";
 	private boolean initialized = false;
 	
 	// Prevent initialization
@@ -30,92 +32,155 @@ public class PhoneticParser {
 		return instance;
 	}
 	
-	public void setLoader(PhoneticLoader loader) {
+	public synchronized void setLoader(PhoneticLoader loader) {
 		PhoneticParser.loader = loader;
 	}
 	
-	public void init() throws Exception {
+	public synchronized void init() throws Exception {
 		if(loader == null) {
 			new Exception("No PhoneticLoader loader available");
 		}
 		Data data = loader.getData();
 		patterns = data.getPatterns();
-		vowels = data.getVowels();
-		consonants = data.getConsonats();
-		punctuations = data.getPunctuations();
+		vowel = data.getVowel();
+		consonant = data.getConsonant();
+		punctuation = data.getPunctuation();
 		initialized = true;
 	}
 	
 	public String parse(String input) throws Exception {
+		
+		// Logger logger = Logger.getAnonymousLogger();
+		
 		if(initialized == false) {
 			this.init();
 		}
 		String output = "";
-		for(int cur = input.length()-1; cur>=0; --cur) {
-			int end = cur + 1, start = cur, prev;
+		for(int cur = 0; cur < input.length(); ++cur) {
+			int start = cur, end = cur + 1, next = end + 1, prev = start - 1;
 			boolean matched = false;
 			for(Pattern pattern: patterns) {
-				start = end - pattern.getFind().length();
-				if(start >= 0 && input.substring(start, end).equals(pattern.getFind())) {
-					prev = start -1;
-					
+				end = cur + pattern.getFind().length();
+				if(end <= input.length() && input.substring(start, end).equals(pattern.getFind())) {
+					prev = start - 1;
+					next = end + 1;
 					for(Rule rule: pattern.getRules()) {
-						boolean replace = false;
-						// Beginning
-						if(rule.getPrefixClass().equals("none")) {
-							if(prev < 0 || isPunctuation(input.charAt(prev))) {
-								replace = true;
+						boolean replace = true;
+						
+						int chk = -1;
+						
+						for(Match match: rule.getMatches()) {
+							if(match.getType().equals("suffix")) {
+								chk = next;
+							} 
+							// Prefix
+							else {
+								chk = prev;
 							}
-						}
-						// Vowel
-						else if(rule.getPrefixClass().equals("vowel")) {
-							if(prev < 0 || isVowel(input.charAt(prev))) {
-								replace = true;
+							
+							// Beginning
+							if(match.getScope().equals("punctuation")) {
+								if(
+										! (
+											(chk < 0 && match.getType().equals("prefix")) || 
+											(chk >= input.length() && match.getType().equals("suffix")) || 
+											isPunctuation(input.charAt(chk), match.isNegative())
+										)
+								) {
+									replace = false;
+									break;
+								}
 							}
-						}
-						// Custom
-						else if(rule.getPrefixClass().equals("custom")) {
-							int prevStart = start - rule.getPrefix().length();
-							if(prevStart >= 0 && input.substring(prevStart, start).equals(rule.getPrefix())) {
-								replace = true;
+							// Vowel
+							else if(match.getScope().equals("vowel")) {
+								if(
+										! (
+											(
+												(chk >= 0 && match.getType().equals("prefix")) || 
+												(chk < input.length() && match.getType().equals("suffix"))
+											) && 
+											isVowel(input.charAt(chk), match.isNegative())
+										)
+								) {
+									replace = false;
+									break;
+								}
+							}
+							// Consonant
+							else if(match.getScope().equals("consonant")) {
+								if(
+										! (
+												(
+													(chk >= 0 && match.getType().equals("prefix")) || 
+													(chk < input.length() && match.getType().equals("suffix"))
+												) && 
+												isConsonant(input.charAt(chk), match.isNegative())
+											)
+								) {
+									replace = false;
+									break;
+								}
+							}
+							// Exact
+							else if(match.getScope().equals("exact")) {
+								int s, e;
+								if(match.getType().equals("suffix")) {
+									s = end;
+									e = end + match.getValue().length() - 1;
+								} 
+								// Prefix
+								else {
+									s = start - match.getValue().length();
+									e = start;
+								}
+								if(!isExact(match.getValue(), input, s, e, match.isNegative())) {
+									replace = false;
+									break;
+								}
 							}
 						}
 						
 						if(replace) {
-							output = rule.getReplace() + output;
-							cur = start;
+							output += rule.getReplace();
+							cur = end - 1;
 							matched = true;
 							break;
 						}
 						
 					}
+
 					if(matched == true) break;
 					
 					// Default
-					output = pattern.getReplace() + output;
-					cur = start;
+					output += pattern.getReplace();
+					cur = end - 1;
 					matched = true;
 					break;
 				}
 			}
 			
 			if(!matched) {
-				output = input.charAt(cur) + output;
+				output += input.charAt(cur);
 			}
+			// System.out.printf("cur: %s, start: %s, end: %s, prev: %s\n", cur, start, end, prev);
 		}
 		return output;
 	}
 	
-	private boolean isVowel(char c) {
-		return (vowels.indexOf(c) >= 0);
+	private boolean isVowel(char c, boolean not) {
+		return ((vowel.indexOf(c) >= 0) ^ not);
 	}
 	
-	private boolean isConsonant(char c) {
-		return (consonants.indexOf(c) >= 0);
+	private boolean isConsonant(char c, boolean not) {
+		return ((consonant.indexOf(c) >= 0) ^ not);
 	}
 	
-	private boolean isPunctuation(char c) {
-		return (punctuations.indexOf(c) >= 0);
+	private boolean isPunctuation(char c, boolean not) {
+		return ((punctuation.indexOf(c) >= 0) ^ not);
+	}
+	
+	private boolean isExact(String needle, String heystack, int start, int end, boolean not) {
+		return ((start >= 0 && end < heystack.length() && heystack.substring(start, end).equals(needle)) ^ not);
 	}
 	
 }

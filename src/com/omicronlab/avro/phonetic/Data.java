@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Data {
 	private List<Pattern> patterns;
-	private String vowels = "";
-	private String consonats = "";
-	private String punctuations = "";
+	private String vowel = "";
+	private String consonant = "";
+	private String punctuation = "";
 	
 	public Data() {
 		this.patterns = new ArrayList<Pattern>();
@@ -20,29 +20,29 @@ public class Data {
 	public void addPattern(Pattern pattern) {
 		this.patterns.add(pattern);
 	}
+
+	public String getVowel() {
+		return vowel;
+	}
+
+	public void setVowel(String vowel) {
+		this.vowel = vowel;
+	}
+
+	public String getConsonant() {
+		return consonant;
+	}
+
+	public void setConsonant(String consonant) {
+		this.consonant = consonant;
+	}
+
+	public String getPunctuation() {
+		return punctuation;
+	}
+
+	public void setPunctuation(String punctuation) {
+		this.punctuation = punctuation;
+	}
 	
-	public String getVowels() {
-		return vowels;
-	}
-
-	public void setVowels(String vowels) {
-		this.vowels = vowels;
-	}
-
-	public String getConsonats() {
-		return consonats;
-	}
-
-	public void setConsonats(String consonats) {
-		this.consonats = consonats;
-	}
-
-	public String getPunctuations() {
-		return punctuations;
-	}
-
-	public void setPunctuations(String punctuations) {
-		this.punctuations = punctuations;
-	}
-
 }

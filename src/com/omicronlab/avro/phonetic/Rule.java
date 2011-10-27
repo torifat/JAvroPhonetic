@@ -1,29 +1,23 @@
 package com.omicronlab.avro.phonetic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Rule {
 	
-	private String prefix;
-	private String prefixClass;
+	private List<Match> matches;
 	private String replace;
 	
 	public Rule(){
-		
-	}
-	
-	public String getPrefix() {
-		return prefix;
-	}
-	
-	public void setPrefix(String prefix) {
-		this.prefix = prefix;
+		this.matches = new ArrayList<Match>();
 	}
 
-	public String getPrefixClass() {
-		return prefixClass;
+	public List<Match> getMatches() {
+		return matches;
 	}
 
-	public void setPrefixClass(String prefixClass) {
-		this.prefixClass = prefixClass;
+	public void addMatch(Match match) {
+		this.matches.add(match);
 	}
 
 	public String getReplace() {
@@ -33,5 +27,4 @@ public class Rule {
 	public void setReplace(String replace) {
 		this.replace = replace;
 	}
-	
 }
