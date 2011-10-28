@@ -27,35 +27,33 @@
 
 package com.omicronlab.avro;
 
-import org.apache.commons.lang3.StringUtils;
+import static org.junit.Assert.*;
 
-public class Avro {
+import org.junit.Before;
+import org.junit.Test;
 
-	public static void main(String[] args) {
-		if(args.length > 0) {
-			PhoneticXmlLoader xmlLoader = null;
-			try {
-				 xmlLoader = new PhoneticXmlLoader("conf/phonetic.xml");
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("Something very unholy has just happened :|");
-			}
-			
-			if(xmlLoader != null) {
-				PhoneticParser parser = PhoneticParser.getInstance();
-				parser.setLoader(xmlLoader);
-				
-				String str = StringUtils.join(args, " ");
-				String output = null;
-				try {
-					output = parser.parse(str);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				System.out.println(str);
-				System.out.println(output);
-			}
+public class AvroTest {
+	
+	private PhoneticParser avro;
+	
+	@Before
+	public void beforeTest() {
+		PhoneticXmlLoader xmlLoader = null;
+		try {
+			 xmlLoader = new PhoneticXmlLoader("conf/phonetic.xml");
+			 avro = PhoneticParser.getInstance();
+			 avro.setLoader(xmlLoader);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Something very unholy has just happened :|");
 		}
 	}
+
+	@Test
+	public void testAmiBanglayGanGai() {
+		String input = "ami banglay gan gai";
+		String output = avro.parse(input);
+		assertEquals("আমি বাংলায় গান গাই", output);
+	}
+
 }

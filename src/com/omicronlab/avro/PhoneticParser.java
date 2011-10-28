@@ -76,12 +76,16 @@ public class PhoneticParser {
 		initialized = true;
 	}
 	
-	public String parse(String input) throws Exception {
+	public String parse(String input) {
 		
 		// Logger logger = Logger.getAnonymousLogger();
 		
 		if(initialized == false) {
-			this.init();
+			try {
+				this.init();
+			} catch(Exception e) {
+				// Please handle the exception by calling init
+			}
 		}
 		
 		String fixed = "";
