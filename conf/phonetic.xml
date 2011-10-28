@@ -13,11 +13,6 @@
 			<rules/>
 		</pattern>
 		<pattern>
-			<find>bhl</find>
-			<replace>ভ্ল</replace>
-			<rules/>
-		</pattern>
-		<pattern>
 			<find>bj</find>
 			<replace>ব্জ</replace>
 			<rules/>
