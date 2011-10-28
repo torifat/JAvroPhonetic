@@ -4,7 +4,7 @@
 		<vowel>aeiou</vowel>
 		<consonant>bcdfghjklmnpqrstvwxyz</consonant>
 		<punctuation>. ?</punctuation>
-		<casesensitive>OIUDGJNRSTYZ</casesensitive>
+		<casesensitive>oiudgjnrstyz</casesensitive>
 	</classes>
 	<patterns>	
 		<pattern>

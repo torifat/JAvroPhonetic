@@ -61,14 +61,12 @@ public class PhoneticParser {
 		String fixed = "";
 		for(char c: input.toCharArray()) {
 			if(this.isCaseSensitive(c)) {
-				fixed += Character.toLowerCase(c);
-			}
-			else {
 				fixed += c;
 			}
+			else {
+				fixed += Character.toLowerCase(c);
+			}
 		}
-		
-		System.out.println(fixed);
 		
 		String output = "";
 		for(int cur = 0; cur < fixed.length(); ++cur) {
@@ -199,7 +197,7 @@ public class PhoneticParser {
 	}
 	
 	private boolean isCaseSensitive(char c) {
-		return (casesensitive.indexOf(c) >= 0);
+		return (casesensitive.indexOf(Character.toLowerCase(c)) >= 0);
 	}
 	
 }
