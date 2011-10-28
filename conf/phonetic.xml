@@ -4,6 +4,7 @@
 		<vowel>aeiouAEIOU</vowel>
 		<consonant>bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ</consonant>
 		<punctuation>. ?</punctuation>
+		<casesensitive>oOiIuUdDgGjJnNrRsStTyYzZ</casesensitive>
 	</classes>
 	<patterns>	
 		<pattern>
@@ -1028,7 +1029,7 @@
 		</pattern>
 		<pattern>
 			<find>rZ</find>
-			<!-- Need to place ZWJ or ZWNJ here -->
+			<!-- TODO: place ZWJ or ZWNJ here -->
 			<replace>র্য</replace>
 			<rules>
 				<rule>
@@ -1045,7 +1046,7 @@
 		</pattern>
 		<pattern>
 			<find>ry</find>
-			<!-- Need to place ZWJ or ZWNJ here -->
+			<!-- TODO: place ZWJ or ZWNJ here -->
 			<replace>র্য</replace>
 			<rules>
 				<rule>
@@ -1636,6 +1637,78 @@
 		<pattern>
 			<find>q</find>
 			<replace>ক</replace>
+			<rules/>
+		</pattern>
+		<pattern>
+			<find>ও</find>
+			<replace>ক</replace>
+			<rules>
+				<rule>
+					<find>
+						<match type="prefix" scope="punctuation"/>
+						<match type="suffix" scope="vowel"/>
+					</find>
+					<replace>ওয়</replace>
+				</rule>
+				<rule>
+					<find>
+						<match type="suffix" scope="consonant"/>
+					</find>
+					<replace>্ব</replace>
+				</rule>
+			</rules>
+		</pattern>
+		<pattern>
+			<find>x</find>
+			<replace>ক্স</replace>
+			<rules>
+				<rule>
+					<find>
+						<match type="prefix" scope="punctuation" />
+					</find>
+					<replace>এক্স</replace>
+				</rule>
+			</rules>
+		</pattern>
+		<pattern>
+			<find>:`</find>
+			<replace>:</replace>
+			<rules/>
+		</pattern>
+		<pattern>
+			<find>:</find>
+			<replace>ঃ</replace>
+			<rules/>
+		</pattern>
+		<pattern>
+			<find>^`</find>
+			<replace>^</replace>
+			<rules/>
+		</pattern>
+		<pattern>
+			<find>^</find>
+			<replace>ঁ</replace>
+			<rules/>
+		</pattern>
+		<pattern>
+			<find>,,</find>
+			<!-- TODO: place ZWNJ here -->
+			<replace>্</replace>
+			<rules/>
+		</pattern>
+		<pattern>
+			<find>,</find>
+			<replace>,</replace>
+			<rules/>
+		</pattern>
+		<pattern>
+			<find>$</find>
+			<replace>৳</replace>
+			<rules/>
+		</pattern>
+		<pattern>
+			<find>`</find>
+			<replace/>
 			<rules/>
 		</pattern>
 	</patterns>
