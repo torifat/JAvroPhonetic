@@ -1093,7 +1093,19 @@
 		<pattern>
 			<find>r</find>
 			<replace>র</replace>
-			<rules/>
+			<rules>
+				<rule>
+					<find>
+						<match type="prefix" scope="consonant" />
+						<match type="prefix" scope="!exact">r</match>
+						<match type="prefix" scope="!exact">y</match>
+						<match type="prefix" scope="!exact">w</match>
+						<match type="prefix" scope="!exact">x</match>
+						<match type="prefix" scope="!exact">z</match>
+					</find>
+					<replace>্র</replace>
+				</rule>
+			</rules>
 		</pattern>
 		<pattern>
 			<find>shch</find>
@@ -1592,11 +1604,29 @@
 			<replace>য</replace>
 			<rules/>
 		</pattern>
-		
 		<pattern>
 			<find>Z</find>
 			<replace>্য</replace>
 			<rules/>
+		</pattern>
+		<pattern>
+			<find>y</find>
+			<replace>্য</replace>
+			<rules>
+				<rule>
+					<find>
+						<match type="prefix" scope="!consonant"/>
+						<match type="prefix" scope="!punctuation"/>
+					</find>
+					<replace>য়</replace>
+				</rule>
+				<rule>
+					<find>
+						<match type="prefix" scope="punctuation"/>
+					</find>
+					<replace>ইয়</replace>
+				</rule>
+			</rules>
 		</pattern>
 		<pattern>
 			<find>Y</find>
