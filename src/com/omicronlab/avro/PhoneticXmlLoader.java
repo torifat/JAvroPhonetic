@@ -2,7 +2,6 @@ package com.omicronlab.avro;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import org.apache.commons.digester3.Digester;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
