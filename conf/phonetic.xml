@@ -13,11 +13,6 @@
 			<rules/>
 		</pattern>
 		<pattern>
-			<find>bhl</find>
-			<replace>ভ্ল</replace>
-			<rules/>
-		</pattern>
-		<pattern>
 			<find>bj</find>
 			<replace>ব্জ</replace>
 			<rules/>
@@ -1014,18 +1009,20 @@
 		<pattern>
 			<find>rri</find>
 			<replace>ৃ</replace>
-			<rule>
-				<find>
-					<match type="prefix" scope="!consonant" />
-				</find>
-				<replace>ঋ</replace>
-			</rule>
-			<rule>
-				<find>
-					<match type="prefix" scope="punctuation" />
-				</find>
-				<replace>ঋ</replace>
-			</rule>
+			<rules>
+				<rule>
+					<find>
+						<match type="prefix" scope="!consonant" />
+					</find>
+					<replace>ঋ</replace>
+				</rule>
+				<rule>
+					<find>
+						<match type="prefix" scope="punctuation" />
+					</find>
+					<replace>ঋ</replace>
+				</rule>
+			</rules>
 		</pattern>
 		<pattern>
 			<find>rZ</find>
@@ -1306,15 +1303,15 @@
 					<find>
 						<match type="prefix" scope="!consonant" />
 						<match type="suffix" scope="!exact">`</match> 
-						<replace>উ</replace>
 					</find>
+					<replace>উ</replace>
 				</rule>
 				<rule>
 					<find>
 						<match type="prefix" scope="punctuation" />
-						<match type="suffix" scope="!exact">`</match> 
-						<replace>উ</replace>
+						<match type="suffix" scope="!exact">`</match>
 					</find>
+					<replace>উ</replace>
 				</rule>
 			</rules>
 		</pattern>
