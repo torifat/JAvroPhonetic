@@ -1308,8 +1308,8 @@
 					<find>
 						<match type="prefix" scope="!consonant" />
 						<match type="suffix" scope="!exact">`</match> 
-						<replace>উ</replace>
 					</find>
+					<replace>উ</replace>
 				</rule>
 				<rule>
 					<find>
