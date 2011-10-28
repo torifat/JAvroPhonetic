@@ -1027,6 +1027,40 @@
 			</rule>
 		</pattern>
 		<pattern>
+			<find>rZ</find>
+			<!-- Need to place ZWJ or ZWNJ here -->
+			<replace>র্য</replace>
+			<rules>
+				<rule>
+					<find>
+						<match type="prefix" scope="consonant" />
+						<match type="prefix" scope="!exact">r</match>
+						<match type="prefix" scope="!exact">y</match>
+						<match type="prefix" scope="!exact">w</match>
+						<match type="prefix" scope="!exact">x</match>
+					</find>
+					<replace>্র্য</replace>
+				</rule>
+			</rules>
+		</pattern>
+		<pattern>
+			<find>ry</find>
+			<!-- Need to place ZWJ or ZWNJ here -->
+			<replace>র্য</replace>
+			<rules>
+				<rule>
+					<find>
+						<match type="prefix" scope="consonant" />
+						<match type="prefix" scope="!exact">r</match>
+						<match type="prefix" scope="!exact">y</match>
+						<match type="prefix" scope="!exact">w</match>
+						<match type="prefix" scope="!exact">x</match>
+					</find>
+					<replace>্র্য</replace>
+				</rule>
+			</rules>
+		</pattern>
+		<pattern>
 			<find>rr</find>
 			<replace>রর</replace>
 			<rules>
@@ -1556,6 +1590,22 @@
 		<pattern>
 			<find>z</find>
 			<replace>য</replace>
+			<rules/>
+		</pattern>
+		
+		<pattern>
+			<find>Z</find>
+			<replace>্য</replace>
+			<rules/>
+		</pattern>
+		<pattern>
+			<find>Y</find>
+			<replace>য়</replace>
+			<rules/>
+		</pattern>
+		<pattern>
+			<find>q</find>
+			<replace>ক</replace>
 			<rules/>
 		</pattern>
 	</patterns>
