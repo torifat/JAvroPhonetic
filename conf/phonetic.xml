@@ -1073,8 +1073,8 @@
 						<match type="suffix" scope="!vowel" />
 						<match type="suffix" scope="!exact">r</match> 
 						<match type="suffix" scope="!punctuation" /> 
-						<replace>র্</replace>
 					</find>
+					<replace>র্</replace>
 				</rule>
 			</rules>
 		</pattern>	
@@ -1315,8 +1315,8 @@
 					<find>
 						<match type="prefix" scope="punctuation" />
 						<match type="suffix" scope="!exact">`</match> 
-						<replace>উ</replace>
 					</find>
+					<replace>উ</replace>
 				</rule>
 			</rules>
 		</pattern>
@@ -1338,8 +1338,8 @@
 					<find>
 						<match type="prefix" scope="vowel" />
 						<match type="prefix" scope="!exact">o</match> 
-						<replace>ও</replace>
 					</find>
+					<replace>ও</replace>
 				</rule>
 				<rule>
 					<find>
