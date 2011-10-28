@@ -14,6 +14,7 @@ public class PhoneticParser {
 	private static String vowel = "";
 	private static String consonant = "";
 	private static String punctuation = "";
+	private static String casesensitive = "";
 	private boolean initialized = false;
 	
 	// Prevent initialization
@@ -45,6 +46,7 @@ public class PhoneticParser {
 		vowel = data.getVowel();
 		consonant = data.getConsonant();
 		punctuation = data.getPunctuation();
+		casesensitive = data.getCasesensitive();
 		initialized = true;
 	}
 	
@@ -55,13 +57,26 @@ public class PhoneticParser {
 		if(initialized == false) {
 			this.init();
 		}
+		
+		String fixed = "";
+		for(char c: input.toCharArray()) {
+			if(this.isCaseSensitive(c)) {
+				fixed += Character.toLowerCase(c);
+			}
+			else {
+				fixed += c;
+			}
+		}
+		
+		System.out.println(fixed);
+		
 		String output = "";
-		for(int cur = 0; cur < input.length(); ++cur) {
+		for(int cur = 0; cur < fixed.length(); ++cur) {
 			int start = cur, end = cur + 1, next = end + 1, prev = start - 1;
 			boolean matched = false;
 			for(Pattern pattern: patterns) {
 				end = cur + pattern.getFind().length();
-				if(end <= input.length() && input.substring(start, end).equals(pattern.getFind())) {
+				if(end <= fixed.length() && fixed.substring(start, end).equals(pattern.getFind())) {
 					prev = start - 1;
 					next = end + 1;
 					for(Rule rule: pattern.getRules()) {
@@ -83,8 +98,8 @@ public class PhoneticParser {
 								if(
 										! (
 											(chk < 0 && match.getType().equals("prefix")) || 
-											(chk >= input.length() && match.getType().equals("suffix")) || 
-											isPunctuation(input.charAt(chk), match.isNegative())
+											(chk >= fixed.length() && match.getType().equals("suffix")) || 
+											this.isPunctuation(fixed.charAt(chk), match.isNegative())
 										)
 								) {
 									replace = false;
@@ -97,9 +112,9 @@ public class PhoneticParser {
 										! (
 											(
 												(chk >= 0 && match.getType().equals("prefix")) || 
-												(chk < input.length() && match.getType().equals("suffix"))
+												(chk < fixed.length() && match.getType().equals("suffix"))
 											) && 
-											isVowel(input.charAt(chk), match.isNegative())
+											this.isVowel(fixed.charAt(chk), match.isNegative())
 										)
 								) {
 									replace = false;
@@ -112,9 +127,9 @@ public class PhoneticParser {
 										! (
 												(
 													(chk >= 0 && match.getType().equals("prefix")) || 
-													(chk < input.length() && match.getType().equals("suffix"))
+													(chk < fixed.length() && match.getType().equals("suffix"))
 												) && 
-												isConsonant(input.charAt(chk), match.isNegative())
+												this.isConsonant(fixed.charAt(chk), match.isNegative())
 											)
 								) {
 									replace = false;
@@ -133,7 +148,7 @@ public class PhoneticParser {
 									s = start - match.getValue().length();
 									e = start;
 								}
-								if(!isExact(match.getValue(), input, s, e, match.isNegative())) {
+								if(!this.isExact(match.getValue(), fixed, s, e, match.isNegative())) {
 									replace = false;
 									break;
 								}
@@ -160,7 +175,7 @@ public class PhoneticParser {
 			}
 			
 			if(!matched) {
-				output += input.charAt(cur);
+				output += fixed.charAt(cur);
 			}
 			// System.out.printf("cur: %s, start: %s, end: %s, prev: %s\n", cur, start, end, prev);
 		}
@@ -168,19 +183,23 @@ public class PhoneticParser {
 	}
 	
 	private boolean isVowel(char c, boolean not) {
-		return ((vowel.indexOf(c) >= 0) ^ not);
+		return ((vowel.indexOf(Character.toLowerCase(c)) >= 0) ^ not);
 	}
 	
 	private boolean isConsonant(char c, boolean not) {
-		return ((consonant.indexOf(c) >= 0) ^ not);
+		return ((consonant.indexOf(Character.toLowerCase(c)) >= 0) ^ not);
 	}
 	
 	private boolean isPunctuation(char c, boolean not) {
-		return ((punctuation.indexOf(c) >= 0) ^ not);
+		return ((punctuation.indexOf(Character.toLowerCase(c)) >= 0) ^ not);
 	}
 	
 	private boolean isExact(String needle, String heystack, int start, int end, boolean not) {
 		return ((start >= 0 && end < heystack.length() && heystack.substring(start, end).equals(needle)) ^ not);
+	}
+	
+	private boolean isCaseSensitive(char c) {
+		return (casesensitive.indexOf(c) >= 0);
 	}
 	
 }

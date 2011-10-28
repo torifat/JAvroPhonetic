@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data>
 	<classes>
-		<vowel>aeiouAEIOU</vowel>
-		<consonant>bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ</consonant>
+		<vowel>aeiou</vowel>
+		<consonant>bcdfghjklmnpqrstvwxyz</consonant>
 		<punctuation>. ?</punctuation>
-		<casesensitive>oOiIuUdDgGjJnNrRsStTyYzZ</casesensitive>
+		<casesensitive>OIUDGJNRSTYZ</casesensitive>
 	</classes>
 	<patterns>	
 		<pattern>

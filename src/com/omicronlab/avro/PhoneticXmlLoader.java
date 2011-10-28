@@ -24,6 +24,7 @@ public class PhoneticXmlLoader implements PhoneticLoader {
     	digester.addBeanPropertySetter("data/classes/vowel", "vowel");
         digester.addBeanPropertySetter("data/classes/consonant", "consonant");
         digester.addBeanPropertySetter("data/classes/punctuation", "punctuation");
+        digester.addBeanPropertySetter("data/classes/casesensitive", "casesensitive");
         
     	digester.addObjectCreate("data/patterns/pattern", Pattern.class);
         digester.addBeanPropertySetter("data/patterns/pattern/find", "find");

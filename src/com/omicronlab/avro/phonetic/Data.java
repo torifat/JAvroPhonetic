@@ -8,6 +8,7 @@ public class Data {
 	private String vowel = "";
 	private String consonant = "";
 	private String punctuation = "";
+	private String casesensitive = "";
 	
 	public Data() {
 		this.patterns = new ArrayList<Pattern>();
@@ -43,6 +44,14 @@ public class Data {
 
 	public void setPunctuation(String punctuation) {
 		this.punctuation = punctuation;
+	}
+
+	public String getCasesensitive() {
+		return casesensitive;
+	}
+
+	public void setCasesensitive(String casesensitive) {
+		this.casesensitive = casesensitive;
 	}
 	
 }
