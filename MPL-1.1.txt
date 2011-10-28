@@ -452,5 +452,5 @@ EXHIBIT A -Mozilla Public License.
      Copyright (C) OmicronLab <http://www.omicronlab.com>. All Rights Reserved.
 
 
-     Contributor(s): _______________________________"
+     Contributor(s): Mehdi Hasan <mhasan@omicronlab.com>"
 
