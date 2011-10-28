@@ -1014,18 +1014,20 @@
 		<pattern>
 			<find>rri</find>
 			<replace>ৃ</replace>
-			<rule>
-				<find>
-					<match type="prefix" scope="!consonant" />
-				</find>
-				<replace>ঋ</replace>
-			</rule>
-			<rule>
-				<find>
-					<match type="prefix" scope="punctuation" />
-				</find>
-				<replace>ঋ</replace>
-			</rule>
+			<rules>
+				<rule>
+					<find>
+						<match type="prefix" scope="!consonant" />
+					</find>
+					<replace>ঋ</replace>
+				</rule>
+				<rule>
+					<find>
+						<match type="prefix" scope="punctuation" />
+					</find>
+					<replace>ঋ</replace>
+				</rule>
+			</rules>
 		</pattern>
 		<pattern>
 			<find>rZ</find>
