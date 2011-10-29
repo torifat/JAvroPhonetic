@@ -78,8 +78,6 @@ public class PhoneticParser {
 	
 	public String parse(String input) {
 		
-		// Logger logger = Logger.getAnonymousLogger();
-		
 		if(initialized == false) {
 			try {
 				this.init();
@@ -124,11 +122,11 @@ public class PhoneticParser {
 							// Beginning
 							if(match.getScope().equals("punctuation")) {
 								if(
-										! (
-											(chk < 0 && match.getType().equals("prefix")) || 
-											(chk >= fixed.length() && match.getType().equals("suffix")) || 
-											this.isPunctuation(fixed.charAt(chk), match.isNegative())
-										)
+									! (
+										(chk < 0 && match.getType().equals("prefix")) || 
+										(chk >= fixed.length() && match.getType().equals("suffix")) || 
+										this.isPunctuation(fixed.charAt(chk), match.isNegative())
+									)
 								) {
 									replace = false;
 									break;
@@ -137,13 +135,13 @@ public class PhoneticParser {
 							// Vowel
 							else if(match.getScope().equals("vowel")) {
 								if(
-										! (
-											(
-												(chk >= 0 && match.getType().equals("prefix")) || 
-												(chk < fixed.length() && match.getType().equals("suffix"))
-											) && 
-											this.isVowel(fixed.charAt(chk), match.isNegative())
-										)
+									! (
+										(
+											(chk >= 0 && match.getType().equals("prefix")) || 
+											(chk < fixed.length() && match.getType().equals("suffix"))
+										) && 
+										this.isVowel(fixed.charAt(chk), match.isNegative())
+									)
 								) {
 									replace = false;
 									break;
@@ -152,13 +150,13 @@ public class PhoneticParser {
 							// Consonant
 							else if(match.getScope().equals("consonant")) {
 								if(
-										! (
-												(
-													(chk >= 0 && match.getType().equals("prefix")) || 
-													(chk < fixed.length() && match.getType().equals("suffix"))
-												) && 
-												this.isConsonant(fixed.charAt(chk), match.isNegative())
-											)
+									! (
+										(
+											(chk >= 0 && match.getType().equals("prefix")) || 
+											(chk < fixed.length() && match.getType().equals("suffix"))
+										) && 
+										this.isConsonant(fixed.charAt(chk), match.isNegative())
+									)
 								) {
 									replace = false;
 									break;
