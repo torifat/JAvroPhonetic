@@ -82,7 +82,9 @@ public class PhoneticParser {
 			try {
 				this.init();
 			} catch(Exception e) {
-				// Please handle the exception by calling init
+				System.err.println(e);
+				System.err.println("Please handle the exception by calling init");
+				System.exit(0);
 			}
 		}
 		
