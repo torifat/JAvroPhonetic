@@ -38,7 +38,11 @@ public class PhoneticXmlLoader implements PhoneticLoader {
 	
 	private String path = null;
 	
-	PhoneticXmlLoader(String path) {
+	public PhoneticXmlLoader() {
+		this.path = "src/com/omicronlab/avro/phonetic/phonetic.xml";
+	}
+	
+	public PhoneticXmlLoader(String path) {
 		this.path = path;
 	}
 	

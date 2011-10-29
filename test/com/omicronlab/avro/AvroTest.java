@@ -38,11 +38,9 @@ public class AvroTest {
 	
 	@Before
 	public void beforeTest() {
-		PhoneticXmlLoader xmlLoader = null;
 		try {
-			 xmlLoader = new PhoneticXmlLoader("conf/phonetic.xml");
 			 avro = PhoneticParser.getInstance();
-			 avro.setLoader(xmlLoader);
+			 avro.setLoader( new PhoneticXmlLoader() );
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Something very unholy has just happened :|");
