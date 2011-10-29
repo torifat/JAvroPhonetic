@@ -27,23 +27,24 @@
 
 package com.omicronlab.avro;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.apache.commons.digester3.Digester;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import com.omicronlab.avro.phonetic.*;
 
 public class PhoneticXmlLoader implements PhoneticLoader {
 	
-	private String path = null;
+	private URL url = null;
 	
 	public PhoneticXmlLoader() {
-		this.path = "src/com/omicronlab/avro/phonetic/phonetic.xml";
+		this.url = Data.class.getResource("phonetic.xml");
 	}
 	
-	public PhoneticXmlLoader(String path) {
-		this.path = path;
+	public PhoneticXmlLoader(String path) throws MalformedURLException {
+		this.url = new URL(path);
 	}
 	
     public Data getData() throws IOException, SAXException {
@@ -74,7 +75,7 @@ public class PhoneticXmlLoader implements PhoneticLoader {
         
         digester.addSetNext("data/patterns/pattern", "addPattern");
         
-        Data data = (Data) digester.parse(new InputSource(new FileReader(path)));
+        Data data = (Data) digester.parse(this.url);
 		return data;
     }
 }
