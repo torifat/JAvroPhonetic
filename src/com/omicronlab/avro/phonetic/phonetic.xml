@@ -228,7 +228,7 @@
 			<rules/>
 		</pattern>
 		<pattern>
-			<find>জ্ঞ</find>
+			<find>gg</find>
 			<replace>জ্ঞ</replace>
 			<rules/>
 		</pattern>
@@ -1026,8 +1026,8 @@
 		</pattern>
 		<pattern>
 			<find>rZ</find>
-			<!-- TODO: place ZWJ or ZWNJ here -->
-			<replace>র্য</replace>
+			<!-- NOTE: Invisivle ZWJ here -->
+			<replace>র‍্য</replace>
 			<rules>
 				<rule>
 					<find>
@@ -1043,8 +1043,8 @@
 		</pattern>
 		<pattern>
 			<find>ry</find>
-			<!-- TODO: place ZWJ or ZWNJ here -->
-			<replace>র্য</replace>
+			<!-- NOTE: Invisivle ZWJ here -->
+			<replace>র‍্য</replace>
 			<rules>
 				<rule>
 					<find>
@@ -1637,8 +1637,8 @@
 			<rules/>
 		</pattern>
 		<pattern>
-			<find>ও</find>
-			<replace>ক</replace>
+			<find>w</find>
+			<replace>ও</replace>
 			<rules>
 				<rule>
 					<find>
