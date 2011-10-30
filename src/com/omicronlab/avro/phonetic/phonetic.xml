@@ -1036,12 +1036,6 @@
 			<rules>
 				<rule>
 					<find>
-						<match type="prefix" scope="exact">r</match>
-					</find>
-					<replace>রর‍্য</replace>
-				</rule>
-				<rule>
-					<find>
 						<match type="prefix" scope="consonant" />
 						<match type="prefix" scope="!exact">r</match>
 						<match type="prefix" scope="!exact">y</match>
@@ -1057,12 +1051,6 @@
 			<!-- NOTE: Invisivle ZWJ here -->
 			<replace>র‍্য</replace>
 			<rules>
-			<rule>
-					<find>
-						<match type="prefix" scope="exact">r</match>
-					</find>
-					<replace>রর‍্য</replace>
-				</rule>
 				<rule>
 					<find>
 						<match type="prefix" scope="consonant" />
