@@ -608,11 +608,6 @@
 			<rules/>
 		</pattern>
 		<pattern>
-			<find>NGch</find>
-			<replace>ঞ্ছ</replace>
-			<rules/>
-		</pattern>
-		<pattern>
 			<find>Nggh</find>
 			<replace>ঙ্ঘ</replace>
 			<rules/>
