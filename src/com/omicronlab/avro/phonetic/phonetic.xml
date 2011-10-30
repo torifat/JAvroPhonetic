@@ -1020,7 +1020,7 @@
 			</rules>
 		</pattern>
 		<pattern>
-			<find>rrz</find>
+			<find>rrZ</find>
 			<replace>রর‍্য</replace>
 			<rules/>
 		</pattern>
