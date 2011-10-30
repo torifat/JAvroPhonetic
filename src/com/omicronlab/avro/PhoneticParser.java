@@ -100,7 +100,7 @@ public class PhoneticParser {
 		
 		String output = "";
 		for(int cur = 0; cur < fixed.length(); ++cur) {
-			int start = cur, end = cur + 1, next = end + 1, prev = start - 1;
+			int start = cur, end = cur + 1, prev = start - 1;
 			boolean matched = false;
 			for(Pattern pattern: patterns) {
 				end = cur + pattern.getFind().length();
@@ -110,11 +110,11 @@ public class PhoneticParser {
 					for(Rule rule: pattern.getRules()) {
 						boolean replace = true;
 						
-						int chk = -1;
+						int chk = 0;
 						
 						for(Match match: rule.getMatches()) {
 							if(match.getType().equals("suffix")) {
-								chk = next;
+								chk = end;
 							} 
 							// Prefix
 							else {
@@ -127,8 +127,8 @@ public class PhoneticParser {
 									! (
 										(chk < 0 && match.getType().equals("prefix")) || 
 										(chk >= fixed.length() && match.getType().equals("suffix")) || 
-										this.isPunctuation(fixed.charAt(chk), match.isNegative())
-									)
+										this.isPunctuation(fixed.charAt(chk))
+									) ^ match.isNegative()
 								) {
 									replace = false;
 									break;
@@ -142,8 +142,8 @@ public class PhoneticParser {
 											(chk >= 0 && match.getType().equals("prefix")) || 
 											(chk < fixed.length() && match.getType().equals("suffix"))
 										) && 
-										this.isVowel(fixed.charAt(chk), match.isNegative())
-									)
+										this.isVowel(fixed.charAt(chk))
+									) ^ match.isNegative()
 								) {
 									replace = false;
 									break;
@@ -157,8 +157,8 @@ public class PhoneticParser {
 											(chk >= 0 && match.getType().equals("prefix")) || 
 											(chk < fixed.length() && match.getType().equals("suffix"))
 										) && 
-										this.isConsonant(fixed.charAt(chk), match.isNegative())
-									)
+										this.isConsonant(fixed.charAt(chk))
+									) ^ match.isNegative()
 								) {
 									replace = false;
 									break;
@@ -169,7 +169,7 @@ public class PhoneticParser {
 								int s, e;
 								if(match.getType().equals("suffix")) {
 									s = end;
-									e = end + match.getValue().length() - 1;
+									e = end + match.getValue().length();
 								} 
 								// Prefix
 								else {
@@ -210,16 +210,16 @@ public class PhoneticParser {
 		return output;
 	}
 	
-	private boolean isVowel(char c, boolean not) {
-		return ((vowel.indexOf(Character.toLowerCase(c)) >= 0) ^ not);
+	private boolean isVowel(char c) {
+		return ((vowel.indexOf(Character.toLowerCase(c)) >= 0));
 	}
 	
-	private boolean isConsonant(char c, boolean not) {
-		return ((consonant.indexOf(Character.toLowerCase(c)) >= 0) ^ not);
+	private boolean isConsonant(char c) {
+		return ((consonant.indexOf(Character.toLowerCase(c)) >= 0));
 	}
 	
-	private boolean isPunctuation(char c, boolean not) {
-		return ((punctuation.indexOf(Character.toLowerCase(c)) >= 0) ^ not);
+	private boolean isPunctuation(char c) {
+		return ((punctuation.indexOf(Character.toLowerCase(c)) >= 0));
 	}
 	
 	private boolean isExact(String needle, String heystack, int start, int end, boolean not) {
