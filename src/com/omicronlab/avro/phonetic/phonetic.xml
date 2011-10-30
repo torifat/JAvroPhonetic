@@ -1684,8 +1684,8 @@
 		</pattern>
 		<pattern>
 			<find>,,</find>
-			<!-- TODO: place ZWNJ here -->
-			<replace>্</replace>
+			<!-- Note: Invisible ZWNJ here -->
+			<replace>্‌</replace>
 			<rules/>
 		</pattern>
 		<pattern>
