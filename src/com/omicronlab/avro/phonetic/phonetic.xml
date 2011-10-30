@@ -1020,10 +1020,26 @@
 			</rules>
 		</pattern>
 		<pattern>
+			<find>rrz</find>
+			<replace>রর‍্য</replace>
+			<rules/>
+		</pattern>
+		<pattern>
+			<find>rry</find>
+			<replace>রর‍্য</replace>
+			<rules/>
+		</pattern>
+		<pattern>
 			<find>rZ</find>
 			<!-- NOTE: Invisivle ZWJ here -->
 			<replace>র‍্য</replace>
 			<rules>
+				<rule>
+					<find>
+						<match type="prefix" scope="exact">r</match>
+					</find>
+					<replace>রর‍্য</replace>
+				</rule>
 				<rule>
 					<find>
 						<match type="prefix" scope="consonant" />
@@ -1041,6 +1057,12 @@
 			<!-- NOTE: Invisivle ZWJ here -->
 			<replace>র‍্য</replace>
 			<rules>
+			<rule>
+					<find>
+						<match type="prefix" scope="exact">r</match>
+					</find>
+					<replace>রর‍্য</replace>
+				</rule>
 				<rule>
 					<find>
 						<match type="prefix" scope="consonant" />
@@ -1684,7 +1706,7 @@
 		</pattern>
 		<pattern>
 			<find>,,</find>
-			<!-- Note: Invisible ZWNJ here -->
+			<!-- NOTE: Invisible ZWNJ here -->
 			<replace>্‌</replace>
 			<rules/>
 		</pattern>
