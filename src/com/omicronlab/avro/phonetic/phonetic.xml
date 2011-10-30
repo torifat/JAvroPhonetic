@@ -1666,7 +1666,7 @@
 				</rule>
 				<rule>
 					<find>
-						<match type="suffix" scope="consonant"/>
+						<match type="prefix" scope="consonant"/>
 					</find>
 					<replace>্ব</replace>
 				</rule>
