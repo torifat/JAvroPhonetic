@@ -1637,8 +1637,8 @@
 			<rules/>
 		</pattern>
 		<pattern>
-			<find>ও</find>
-			<replace>ক</replace>
+			<find>w</find>
+			<replace>ও</replace>
 			<rules>
 				<rule>
 					<find>
