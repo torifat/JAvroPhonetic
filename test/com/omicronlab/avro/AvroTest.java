@@ -53,10 +53,10 @@ public class AvroTest {
 	}
 
 	@Test
-	public void testAmiBanglayGanGai() {
-		String input = "ami banglay gan gai";
-		String output = avro.parse(input);
-		assertEquals("আমি বাংলায় গান গাই", output);
+	public void testSentances() {
+		//Goal: Test Sentence conversion
+		assertEquals("আমি বাংলায় গান গাই",  avro.parse("ami banglay gan gai"));
+		assertEquals("আমাদের ভালোবাসা হয়ে গেল ঘাস, খেয়ে গেল গরু আর দিয়ে গেল বাঁশ",  avro.parse("amader valObasa hoye gel ghas, kheye gel goru ar diye gelo ba^sh"));
 	}
 	
 	@Test
