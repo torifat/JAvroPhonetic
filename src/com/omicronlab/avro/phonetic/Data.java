@@ -34,7 +34,6 @@ public class Data {
 	private List<Pattern> patterns;
 	private String vowel = "";
 	private String consonant = "";
-	private String punctuation = "";
 	private String casesensitive = "";
 	
 	public Data() {
@@ -63,14 +62,6 @@ public class Data {
 
 	public void setConsonant(String consonant) {
 		this.consonant = consonant;
-	}
-
-	public String getPunctuation() {
-		return punctuation;
-	}
-
-	public void setPunctuation(String punctuation) {
-		this.punctuation = punctuation;
 	}
 
 	public String getCasesensitive() {

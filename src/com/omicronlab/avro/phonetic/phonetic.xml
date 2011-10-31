@@ -3,7 +3,6 @@
 	<classes>
 		<vowel>aeiou</vowel>
 		<consonant>bcdfghjklmnpqrstvwxyz</consonant>
-		<punctuation>. ?</punctuation>
 		<casesensitive>oiudgjnrstyz</casesensitive>
 	</classes>
 	<patterns>	
@@ -16,12 +15,12 @@
 			<find>bj</find>
 			<replace>ব্জ</replace>
 			<rules/>
-		</pattern>	
+		</pattern>
 		<pattern>
 			<find>bd</find>
 			<replace>ব্দ</replace>
 			<rules/>
-		</pattern>	
+		</pattern>
 		<pattern>
 			<find>bb</find>
 			<replace>ব্ব</replace>

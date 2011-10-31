@@ -39,7 +39,6 @@ public class PhoneticParser {
 	private static List<Pattern> patterns;
 	private static String vowel = "";
 	private static String consonant = "";
-	private static String punctuation = "";
 	private static String casesensitive = "";
 	private boolean initialized = false;
 	
@@ -71,7 +70,6 @@ public class PhoneticParser {
 		patterns = data.getPatterns();
 		vowel = data.getVowel();
 		consonant = data.getConsonant();
-		punctuation = data.getPunctuation();
 		casesensitive = data.getCasesensitive();
 		initialized = true;
 	}
@@ -218,7 +216,7 @@ public class PhoneticParser {
 	}
 	
 	private boolean isPunctuation(char c) {
-		return ((punctuation.indexOf(Character.toLowerCase(c)) >= 0));
+		return (!(this.isVowel(c) || this.isConsonant(c)));
 	}
 	
 	private boolean isExact(String needle, String heystack, int start, int end, boolean not) {
