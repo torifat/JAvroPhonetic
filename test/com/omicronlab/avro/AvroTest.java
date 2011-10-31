@@ -435,13 +435,13 @@ public class AvroTest {
 		assertEquals("ঈক", avro.parse("eek"));
 		assertEquals("০ঈ", avro.parse("0ee"));
 		assertEquals("ঈ৮", avro.parse("ee8"));
-		assertEquals("(ঈ", avro.parse("(ee)"));
+		assertEquals("(ঈ)", avro.parse("(ee)"));
 		assertEquals("ে", avro.parse("e`"));
 		assertEquals("এ", avro.parse("e"));
 		assertEquals("কে", avro.parse("ke"));
 		assertEquals("ওয়ে", avro.parse("we"));
 		assertEquals("#এ#", avro.parse("#e#"));
-		assertEquals("েএ", avro.parse("`e`"));
+		assertEquals("ে", avro.parse("`e`"));
 		assertEquals("য", avro.parse("z"));
 		assertEquals("্য", avro.parse("Z"));
 		assertEquals("র‍্য", avro.parse("rZ"));
