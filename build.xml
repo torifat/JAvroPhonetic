@@ -9,6 +9,12 @@
 	<property name="lib.dir"		value="lib"/>
 	<property name="report.dir"		value="${build.dir}/junitreport"/>
 
+	<exec executable="git" outputproperty="build.commit">
+	    <arg value="describe"/>
+	    <arg value="--tags"/>
+	    <arg value="--abbrev=20"/>
+	</exec>
+	
     <path id="lib.path">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
     </path>
@@ -27,7 +33,7 @@
 
     <target name="jar" depends="clean,compile">
         <mkdir dir="${jar.dir}"/>
-        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}"/>
+        <jar destfile="${jar.dir}/${ant.project.name}-${build.commit}.jar" basedir="${classes.dir}"/>
     </target>
 
 	<target name="compile-test" depends="clean,compile">
