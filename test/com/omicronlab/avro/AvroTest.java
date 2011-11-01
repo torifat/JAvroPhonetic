@@ -45,7 +45,7 @@ public class AvroTest {
 	public void beforeTest() {
 		try {
 			 avro = PhoneticParser.getInstance();
-			 avro.setLoader( new PhoneticXmlLoader() );
+			 avro.setLoader( new PhoneticJsonLoader() );
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Something very unholy has just happened :|");
@@ -252,6 +252,7 @@ public class AvroTest {
 		assertEquals("কৌ", avro.parse("kOU"));
 		assertEquals(" ঔ", avro.parse(" OU"));
 		assertEquals("-ঔ", avro.parse("-OU"));
+		System.out.println(avro.parse(",,OU"));
 		assertEquals("্‌ঔ", avro.parse(",,OU"));
 		assertEquals("ও", avro.parse("O"));
 		assertEquals("পো", avro.parse("pO"));
