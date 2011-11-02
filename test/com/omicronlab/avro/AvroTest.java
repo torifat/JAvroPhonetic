@@ -51,25 +51,6 @@ public class AvroTest {
 		}
 	}
 	
-	// XML Configuration Tests
-	@Test
-	public void xmlTestSentances() {
-		avro.setLoader( new PhoneticXmlLoader() );
-		this.testSentances();
-	}
-	
-	@Test
-	public void xmlTestRandomChars() {
-		avro.setLoader( new PhoneticXmlLoader() );
-		this.testRandomChars();
-	}
-
-	@Test
-	public void xmlBasicTest() {
-		avro.setLoader( new PhoneticXmlLoader() );
-		this.basicTest();
-	}
-	
 	// JSON Configuration Tests
 	@Test
 	public void jsonTestSentances() {
