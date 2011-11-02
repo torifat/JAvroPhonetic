@@ -30,7 +30,7 @@ package com.omicronlab.avro.phonetic;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Pattern {
+public class Pattern implements Comparable<Pattern> {
 	
 	private String find;
 	private String replace;
@@ -62,6 +62,18 @@ public class Pattern {
 
 	public void addRule(Rule rule) {
 		rules.add(rule);
+	}
+
+	@Override
+	public int compareTo(Pattern p) {
+		if(this.find.length() < p.getFind().length()) {
+			return 1;
+		}
+		else if(this.find.length() == p.getFind().length()) {
+			return 0;
+		} else {
+			return -1;
+		}
 	}
 	
 }

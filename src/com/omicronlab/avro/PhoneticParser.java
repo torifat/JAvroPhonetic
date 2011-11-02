@@ -28,6 +28,7 @@
 package com.omicronlab.avro;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.omicronlab.avro.phonetic.*;
@@ -68,6 +69,8 @@ public class PhoneticParser {
 		}
 		Data data = loader.getData();
 		patterns = data.getPatterns();
+		Collections.sort(patterns);
+		
 		vowel = data.getVowel();
 		consonant = data.getConsonant();
 		casesensitive = data.getCasesensitive();
