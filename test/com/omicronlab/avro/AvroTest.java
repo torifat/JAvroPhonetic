@@ -70,25 +70,6 @@ public class AvroTest {
 		this.basicTest();
 	}
 	
-	// JSON Configuration Tests
-	@Test
-	public void jsonTestSentances() {
-		avro.setLoader( new PhoneticJsonLoader() );
-		this.testSentances();
-	}
-
-	@Test
-	public void jsonTestRandomChars() {
-		avro.setLoader( new PhoneticJsonLoader() );
-		this.testRandomChars();
-	}
-	
-	@Test
-	public void jsonBasicTest() {
-		avro.setLoader( new PhoneticJsonLoader() );
-		this.basicTest();
-	}
-
 	// Test Functions
 	public void testSentances() {
 		//Goal: Test Sentence conversion
