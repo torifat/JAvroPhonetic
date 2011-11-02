@@ -45,28 +45,63 @@ public class AvroTest {
 	public void beforeTest() {
 		try {
 			 avro = PhoneticParser.getInstance();
-			 avro.setLoader( new PhoneticJsonLoader() );
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Something very unholy has just happened :|");
 		}
 	}
+	
+	// XML Configuration Tests
+	@Test
+	public void xmlTestSentances() {
+		avro.setLoader( new PhoneticXmlLoader() );
+		this.testSentances();
+	}
+	
+	@Test
+	public void xmlTestRandomChars() {
+		avro.setLoader( new PhoneticXmlLoader() );
+		this.testRandomChars();
+	}
 
 	@Test
+	public void xmlBasicTest() {
+		avro.setLoader( new PhoneticXmlLoader() );
+		this.basicTest();
+	}
+	
+	// JSON Configuration Tests
+	@Test
+	public void jsonTestSentances() {
+		avro.setLoader( new PhoneticJsonLoader() );
+		this.testSentances();
+	}
+
+	@Test
+	public void jsonTestRandomChars() {
+		avro.setLoader( new PhoneticJsonLoader() );
+		this.testRandomChars();
+	}
+	
+	@Test
+	public void jsonBasicTest() {
+		avro.setLoader( new PhoneticJsonLoader() );
+		this.basicTest();
+	}
+
+	// Test Functions
 	public void testSentances() {
 		//Goal: Test Sentence conversion
 		assertEquals("আমি বাংলায় গান গাই",  avro.parse("ami banglay gan gai"));
 		assertEquals("আমাদের ভালোবাসা হয়ে গেল ঘাস, খেয়ে গেল গরু আর দিয়ে গেল বাঁশ",  avro.parse("amader valObasa hoye gel ghas, kheye gel goru ar diye gelo ba^sh"));
 	}
-	
-	@Test
+
 	public void testRandomChars() {
 		//Goal: Test punctuation and other Unicode character (including Bangla)
 		
 		assertEquals("!", avro.parse("!"));
 	}
-	
-	@Test
+
 	public void basicTest() {
 		//Goal: At least one test per conversion rule
 		
