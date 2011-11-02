@@ -252,7 +252,6 @@ public class AvroTest {
 		assertEquals("কৌ", avro.parse("kOU"));
 		assertEquals(" ঔ", avro.parse(" OU"));
 		assertEquals("-ঔ", avro.parse("-OU"));
-		System.out.println(avro.parse(",,OU"));
 		assertEquals("্‌ঔ", avro.parse(",,OU"));
 		assertEquals("ও", avro.parse("O"));
 		assertEquals("পো", avro.parse("pO"));
