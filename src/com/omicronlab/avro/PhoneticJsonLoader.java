@@ -28,8 +28,9 @@
 package com.omicronlab.avro;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.net.MalformedURLException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 
 import com.google.gson.Gson;
@@ -39,19 +40,23 @@ import com.omicronlab.avro.phonetic.*;
 
 public class PhoneticJsonLoader implements PhoneticLoader {
 	
-	private URL url = null;
+	private InputStream is = null;
 	
-	public PhoneticJsonLoader() {
-		this.url = Data.class.getResource("phonetic.json");
+	public PhoneticJsonLoader() throws IOException {
+		this.is = Data.class.getResource("phonetic.json").openStream();
 	}
 	
-	public PhoneticJsonLoader(String path) throws MalformedURLException {
-		this.url = new URL(path);
+	public PhoneticJsonLoader(InputStream is) {
+		this.is = is;
+	}
+	
+	public PhoneticJsonLoader(String path) throws IOException {
+		this.is = new URL(path).openStream();
 	}
 	
     public Data getData() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
     	Gson gson = new Gson();
-    	Data data = (Data) gson.fromJson(new FileReader(this.url.getFile()), Data.class);
+    	Data data = (Data) gson.fromJson(new InputStreamReader(this.is), Data.class);
 		return data;
     }
 }
