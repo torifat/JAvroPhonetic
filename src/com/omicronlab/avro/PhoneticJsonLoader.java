@@ -42,8 +42,12 @@ public class PhoneticJsonLoader implements PhoneticLoader {
 	
 	private InputStream is = null;
 	
-	public PhoneticJsonLoader() throws IOException {
-		this.is = Data.class.getResource("phonetic.json").openStream();
+	public PhoneticJsonLoader() {
+		try {
+			this.is = Data.class.getResource("phonetic.json").openStream();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public PhoneticJsonLoader(InputStream is) {
