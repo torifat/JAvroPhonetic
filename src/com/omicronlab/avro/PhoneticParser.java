@@ -35,7 +35,7 @@ import com.omicronlab.avro.phonetic.*;
 
 public class PhoneticParser {
 	
-	private static PhoneticParser instance = null;
+	private static volatile PhoneticParser instance = null;
 	private static PhoneticLoader loader = null;
 	private static List<Pattern> patterns;
 	private static String vowel = "";
@@ -52,9 +52,13 @@ public class PhoneticParser {
 		throw new CloneNotSupportedException();
 	}
 	
-	public static synchronized PhoneticParser getInstance() {
+	public static PhoneticParser getInstance() {
 		if(instance == null) {
-			instance = new PhoneticParser();
+			synchronized (PhoneticParser.class) {
+				if(instance == null) {
+					instance = new PhoneticParser();
+				}
+			}
 		}
 		return instance;
 	}
