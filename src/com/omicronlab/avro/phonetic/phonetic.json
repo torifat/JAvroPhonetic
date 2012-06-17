@@ -1605,21 +1605,21 @@
         },
         {
             "find":"Rg",
-            "replace":"ড়্গ",
+            "replace":"ড়্গ",
             "rules":
             [
             ]
         },
         {
             "find":"Rh",
-            "replace":"ঢ়",
+            "replace":"ঢ়",
             "rules":
             [
             ]
         },
         {
             "find":"R",
-            "replace":"ড়",
+            "replace":"ড়",
             "rules":
             [
             ]
@@ -2208,7 +2208,7 @@
                             "negative":true
                         }
                     ],
-                    "replace":"য়া"
+                    "replace":"য়া"
                 },
                 {
                     "matches":
@@ -2565,7 +2565,7 @@
                             "negative":true
                         }
                     ],
-                    "replace":"য়"
+                    "replace":"য়"
                 },
                 {
                     "matches":
@@ -2577,13 +2577,13 @@
                             "negative":false
                         }
                     ],
-                    "replace":"ইয়"
+                    "replace":"ইয়"
                 }
             ]
         },
         {
             "find":"Y",
-            "replace":"য়",
+            "replace":"য়",
             "rules":
             [
             ]
@@ -2616,7 +2616,7 @@
                             "negative":false
                         }
                     ],
-                    "replace":"ওয়"
+                    "replace":"ওয়"
                 },
                 {
                     "matches":

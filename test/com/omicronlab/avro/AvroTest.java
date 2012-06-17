@@ -26,7 +26,7 @@
 
 package com.omicronlab.avro;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -38,9 +38,9 @@ Note: 	If all tests fail, make sure the source file encoding is utf8.
 */
 
 public class AvroTest {
-	
+
 	private PhoneticParser avro;
-	
+
 	@Before
 	public void beforeTest() {
 		try {
@@ -50,7 +50,7 @@ public class AvroTest {
 			System.out.println("Something very unholy has just happened :|");
 		}
 	}
-	
+
 	// JSON Configuration Tests
 	@Test
 	public void jsonTestSentances() {
@@ -63,7 +63,7 @@ public class AvroTest {
 		avro.setLoader( new PhoneticJsonLoader() );
 		this.testRandomChars();
 	}
-	
+
 	@Test
 	public void jsonBasicTest() {
 		avro.setLoader( new PhoneticJsonLoader() );
@@ -79,13 +79,13 @@ public class AvroTest {
 
 	public void testRandomChars() {
 		//Goal: Test punctuation and other Unicode character (including Bangla)
-		
+
 		assertEquals("!", avro.parse("!"));
 	}
 
 	public void basicTest() {
 		//Goal: At least one test per conversion rule
-		
+
 		assertEquals("ভ্ল", avro.parse("bhl"));
 		assertEquals("ব্জ", avro.parse("bj"));
 		assertEquals("ব্দ", avro.parse("bd"));
