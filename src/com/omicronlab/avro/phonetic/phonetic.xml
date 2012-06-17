@@ -17,6 +17,11 @@
 			<rules/>
 		</pattern>
 		<pattern>
+			<find>bdh</find>
+			<replace>ব্ধ</replace>
+			<rules/>
+		</pattern>
+		<pattern>
 			<find>bj</find>
 			<replace>ব্জ</replace>
 			<rules/>
@@ -1076,32 +1081,32 @@
 						<match type="prefix" scope="!consonant" />
 						<match type="suffix" scope="!vowel" />
 						<match type="suffix" scope="!exact">r</match>
-						<match type="suffix" scope="!punctuation" /> 						
+						<match type="suffix" scope="!punctuation" />
 					</find>
 					<replace>র্</replace>
 				</rule>
 				<rule>
 					<find>
 						<match type="prefix" scope="consonant" />
-						<match type="prefix" scope="!exact">r</match>  
+						<match type="prefix" scope="!exact">r</match>
 					</find>
 					<replace>্রর</replace>
 				</rule>
 			</rules>
-		</pattern>	
+		</pattern>
 		<pattern>
 			<find>Rg</find>
-			<replace>ড়্গ</replace>
+			<replace>ড়্গ</replace>
 			<rules/>
 		</pattern>
 		<pattern>
 			<find>Rh</find>
-			<replace>ঢ়</replace>
+			<replace>ঢ়</replace>
 			<rules/>
 		</pattern>
 		<pattern>
 			<find>R</find>
-			<replace>ড়</replace>
+			<replace>ড়</replace>
 			<rules/>
 		</pattern>
 		<pattern>
@@ -1323,14 +1328,14 @@
 				<rule>
 					<find>
 						<match type="prefix" scope="!consonant" />
-						<match type="suffix" scope="!exact">`</match> 
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>উ</replace>
 				</rule>
 				<rule>
 					<find>
 						<match type="prefix" scope="punctuation" />
-						<match type="suffix" scope="!exact">`</match> 
+						<match type="suffix" scope="!exact">`</match>
 					</find>
 					<replace>উ</replace>
 				</rule>
@@ -1353,14 +1358,14 @@
 				<rule>
 					<find>
 						<match type="prefix" scope="vowel" />
-						<match type="prefix" scope="!exact">o</match> 
+						<match type="prefix" scope="!exact">o</match>
 					</find>
 					<replace>ও</replace>
 				</rule>
 				<rule>
 					<find>
 						<match type="prefix" scope="vowel" />
-						<match type="prefix" scope="exact">o</match> 
+						<match type="prefix" scope="exact">o</match>
 					</find>
 					<replace>অ</replace>
 				</rule>
@@ -1464,7 +1469,7 @@
 						<match type="prefix" scope="!exact">a</match>
 						<match type="suffix" scope="!exact">`</match>
 					</find>
-					<replace>য়া</replace>
+					<replace>য়া</replace>
 				</rule>
 				<rule>
 					<find>
@@ -1644,19 +1649,19 @@
 						<match type="prefix" scope="!consonant"/>
 						<match type="prefix" scope="!punctuation"/>
 					</find>
-					<replace>য়</replace>
+					<replace>য়</replace>
 				</rule>
 				<rule>
 					<find>
 						<match type="prefix" scope="punctuation"/>
 					</find>
-					<replace>ইয়</replace>
+					<replace>ইয়</replace>
 				</rule>
 			</rules>
 		</pattern>
 		<pattern>
 			<find>Y</find>
-			<replace>য়</replace>
+			<replace>য়</replace>
 			<rules/>
 		</pattern>
 		<pattern>
@@ -1673,7 +1678,7 @@
 						<match type="prefix" scope="punctuation"/>
 						<match type="suffix" scope="vowel"/>
 					</find>
-					<replace>ওয়</replace>
+					<replace>ওয়</replace>
 				</rule>
 				<rule>
 					<find>

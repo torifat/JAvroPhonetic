@@ -26,7 +26,7 @@
 
 package com.omicronlab.avro;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -38,9 +38,9 @@ Note: 	If all tests fail, make sure the source file encoding is utf8.
 */
 
 public class AvroTest {
-	
+
 	private PhoneticParser avro;
-	
+
 	@Before
 	public void beforeTest() {
 		try {
@@ -50,14 +50,14 @@ public class AvroTest {
 			System.out.println("Something very unholy has just happened :|");
 		}
 	}
-	
+
 	// XML Configuration Tests
 	@Test
 	public void xmlTestSentances() {
 		avro.setLoader( new PhoneticXmlLoader() );
 		this.testSentances();
 	}
-	
+
 	@Test
 	public void xmlTestRandomChars() {
 		avro.setLoader( new PhoneticXmlLoader() );
@@ -69,23 +69,22 @@ public class AvroTest {
 		avro.setLoader( new PhoneticXmlLoader() );
 		this.basicTest();
 	}
-	
+
 	// Test Functions
-	public void testSentances() {
+	private void testSentances() {
 		//Goal: Test Sentence conversion
 		assertEquals("আমি বাংলায় গান গাই",  avro.parse("ami banglay gan gai"));
 		assertEquals("আমাদের ভালোবাসা হয়ে গেল ঘাস, খেয়ে গেল গরু আর দিয়ে গেল বাঁশ",  avro.parse("amader valObasa hoye gel ghas, kheye gel goru ar diye gelo ba^sh"));
 	}
 
-	public void testRandomChars() {
+	private void testRandomChars() {
 		//Goal: Test punctuation and other Unicode character (including Bangla)
-		
 		assertEquals("!", avro.parse("!"));
 	}
 
-	public void basicTest() {
+	private void basicTest() {
 		//Goal: At least one test per conversion rule
-		
+
 		assertEquals("ভ্ল", avro.parse("bhl"));
 		assertEquals("ব্জ", avro.parse("bj"));
 		assertEquals("ব্দ", avro.parse("bd"));
@@ -496,7 +495,7 @@ public class AvroTest {
 		assertEquals(",,", avro.parse(",`,"));
 		assertEquals("৳", avro.parse("$"));
 		assertEquals("", avro.parse("`"));
-
+		assertEquals("ব্ধ", avro.parse("bdh"));
 	}
 
 }
