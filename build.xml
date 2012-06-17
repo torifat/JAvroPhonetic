@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project name="avro" basedir="." default="jar">
 
-    <property name="src.dir"		value="src"/>
-	<property name="test.dir"		value="test"/>
-	<property name="build.dir"		value="build"/>
-    <property name="classes.dir"	value="${build.dir}/classes"/>
-	<property name="jar.dir"		value="${build.dir}/jar"/>
-	<property name="lib.dir"		value="lib"/>
-	<property name="report.dir"		value="${build.dir}/junitreport"/>
+    <property name="src.dir"        value="src"/>
+    <property name="test.dir"       value="test"/>
+    <property name="build.dir"      value="build"/>
+    <property name="classes.dir"    value="${build.dir}/classes"/>
+    <property name="jar.dir"        value="${build.dir}/jar"/>
+    <property name="lib.dir"        value="lib"/>
+    <property name="report.dir"     value="${build.dir}/junitreport"/>
 
-	<exec executable="git" outputproperty="build.commit" errorproperty="">
-	    <arg value="describe"/>
-	    <arg value="--tags"/>
-	    <arg value="--abbrev=20"/>
-	</exec>
-	
-	<condition property="version" value="">
-		<equals arg1="${build.commit}" arg2=""/>
-	</condition>
-	<property name="version" value="-${build.commit}"/>
-	
+    <exec executable="git" outputproperty="build.commit" errorproperty="">
+        <arg value="describe"/>
+        <arg value="--tags"/>
+        <arg value="--abbrev=20"/>
+    </exec>
+
+    <condition property="version" value="">
+        <equals arg1="${build.commit}" arg2=""/>
+    </condition>
+    <property name="version" value="-${build.commit}"/>
+
     <path id="lib.path">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
     </path>
-		
-	<target name="clean">
+
+    <target name="clean">
         <delete dir="${build.dir}"/>
     </target>
 
     <target name="compile">
         <mkdir dir="${classes.dir}"/>
         <javac encoding="UTF-8" srcdir="${src.dir}" destdir="${classes.dir}" classpathref="lib.path" includeantruntime="false"/>
-    	<copy todir="${classes.dir}">
+        <copy todir="${classes.dir}">
             <fileset dir="${src.dir}" excludes="**/*.java"/>
         </copy>
     </target>
@@ -41,22 +41,22 @@
         <jar destfile="${jar.dir}/${ant.project.name}${version}.jar" basedir="${classes.dir}"/>
     </target>
 
-	<target name="compile-test" depends="clean,compile">
+    <target name="compile-test" depends="clean,compile">
         <mkdir dir="${classes.dir}"/>
         <javac encoding="UTF-8" srcdir="${test.dir}" destdir="${classes.dir}" classpathref="lib.path" includeantruntime="false"/>
     </target>
 
-	<target name="junit" depends="compile-test">
-		<mkdir dir="${report.dir}"/>
-		<junit fork="yes" printsummary="yes">
-			<jvmarg value="-Dfile.encoding=UTF-8"/>
+    <target name="junit" depends="compile-test">
+        <mkdir dir="${report.dir}"/>
+        <junit fork="yes" printsummary="yes">
+            <jvmarg value="-Dfile.encoding=UTF-8"/>
             <classpath>
-            	<path refid="lib.path"/>
-            	<pathelement location="${classes.dir}"/>
+                <path refid="lib.path"/>
+                <pathelement location="${classes.dir}"/>
             </classpath>
-            
-			<formatter type="xml"/>
-			            
+
+            <formatter type="xml"/>
+
             <batchtest fork="yes" todir="${report.dir}">
                 <fileset dir="${test.dir}" includes="**/*.java"/>
             </batchtest>
