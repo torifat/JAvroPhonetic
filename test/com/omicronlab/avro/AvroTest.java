@@ -496,7 +496,7 @@ public class AvroTest {
 		assertEquals(",,", avro.parse(",`,"));
 		assertEquals("৳", avro.parse("$"));
 		assertEquals("", avro.parse("`"));
-
+		assertEquals("ব্ধ", avro.parse("bdh"));
 	}
 
 }

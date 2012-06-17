@@ -9,6 +9,13 @@
             ]
         },
         {
+            "find":"bdh",
+            "replace":"ব্ধ",
+            "rules":
+            [
+            ]
+        },
+        {
             "find":"psh",
             "replace":"পশ",
             "rules":
