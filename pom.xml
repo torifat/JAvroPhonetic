@@ -8,7 +8,14 @@
   <packaging>jar</packaging>
 
   <name>JAvroPhonetic</name>
-  <url>http://omicronlab.com</url>
+  <url>http://omicronlab.com/</url>
+  <description>A Java implementation of Avro Phonetic</description>
+
+  <scm>
+  	<developerConnection>scm:git:git@github.com:torifat/JAvroPhonetic.git</developerConnection>
+  	<connection>scm:git:git://github.com/torifat/JAvroPhonetic.git</connection>
+  	<url>https://github.com/torifat/JAvroPhonetic/tree/xml</url>
+  </scm>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
