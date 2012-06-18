@@ -51,6 +51,23 @@ public class AvroTest {
 		}
 	}
 
+	// Core Tests
+	@Test
+	public void checkSingleton() {
+		assertEquals(PhoneticParser.getInstance(), PhoneticParser.getInstance());
+	}
+
+	@Test(expected = CloneNotSupportedException.class)
+    public void tryToClone() throws Exception {
+        avro.clone();
+    }
+
+	@Test(expected = Exception.class)
+    public void setLoaderToNull() throws Exception {
+        avro.setLoader(null);
+        avro.init();
+    }
+
 	// XML Configuration Tests
 	@Test
 	public void xmlTestSentances() {
