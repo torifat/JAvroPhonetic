@@ -12,9 +12,9 @@
   <description>A Java implementation of Avro Phonetic</description>
 
   <scm>
-  	<developerConnection>scm:git:git@github.com:torifat/JAvroPhonetic.git</developerConnection>
-  	<connection>scm:git:git://github.com/torifat/JAvroPhonetic.git</connection>
-  	<url>https://github.com/torifat/JAvroPhonetic/tree/xml</url>
+    <developerConnection>scm:git:git@github.com:torifat/JAvroPhonetic.git</developerConnection>
+    <connection>scm:git:git://github.com/torifat/JAvroPhonetic.git</connection>
+    <url>https://github.com/torifat/JAvroPhonetic/tree/xml</url>
   </scm>
 
   <properties>
