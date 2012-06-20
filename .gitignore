@@ -1,6 +1,5 @@
-.DS_Store
-.classpath
-.project
-.settings
-bin
-build
+target/
+
+.*
+!.gitignore
+!.travis.yml
