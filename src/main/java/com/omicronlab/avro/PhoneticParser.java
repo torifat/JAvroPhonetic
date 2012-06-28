@@ -43,6 +43,7 @@ public class PhoneticParser {
     private static String consonant = "";
     private static String casesensitive = "";
     private boolean initialized = false;
+    private static int maxPatternLength = 0;
 
     // Prevent initialization
     private PhoneticParser() {
@@ -79,6 +80,7 @@ public class PhoneticParser {
         vowel = data.getVowel();
         consonant = data.getConsonant();
         casesensitive = data.getCasesensitive();
+        maxPatternLength = patterns.get(0).getFind().length();
         initialized = true;
     }
 
@@ -106,104 +108,122 @@ public class PhoneticParser {
 
         String output = "";
         for(int cur = 0; cur < fixed.length(); ++cur) {
-            int start = cur, end = cur + 1, prev = start - 1;
+            int start = cur, end;
+
             boolean matched = false;
-            for(Pattern pattern: patterns) {
-                end = cur + pattern.getFind().length();
-                if(end <= fixed.length() && fixed.substring(start, end).equals(pattern.getFind())) {
-                    prev = start - 1;
-                    for(Rule rule: pattern.getRules()) {
-                        boolean replace = true;
+            int len;
+            for(len = maxPatternLength; len > 0; --len) {
+                end = start + len;
+                if(end <= fixed.length()) {
+                    String chunk = fixed.substring(start, end);
 
-                        int chk = 0;
+                    // Binary Search
+                    int left = 0, right = patterns.size() - 1, mid;
+                    while(right >= left) {
+                        mid = (right + left) / 2;
+                        Pattern pattern = patterns.get(mid);
+                        if(pattern.getFind().equals(chunk)) {
+                            for(Rule rule: pattern.getRules()) {
+                                boolean replace = true;
 
-                        for(Match match: rule.getMatches()) {
-                            if(match.getType().equals("suffix")) {
-                                chk = end;
-                            }
-                            // Prefix
-                            else {
-                                chk = prev;
-                            }
+                                int chk = 0;
 
-                            // Beginning
-                            if(match.getScope().equals("punctuation")) {
-                                if(
-                                    ! (
-                                        (chk < 0 && match.getType().equals("prefix")) ||
-                                        (chk >= fixed.length() && match.getType().equals("suffix")) ||
-                                        this.isPunctuation(fixed.charAt(chk))
-                                    ) ^ match.isNegative()
-                                ) {
-                                    replace = false;
+                                for(Match match: rule.getMatches()) {
+                                    if(match.getType().equals("suffix")) {
+                                        chk = end;
+                                    }
+                                    // Prefix
+                                    else {
+                                        chk = start - 1;
+                                    }
+
+                                    // Beginning
+                                    if(match.getScope().equals("punctuation")) {
+                                        if(
+                                            ! (
+                                                (chk < 0 && match.getType().equals("prefix")) ||
+                                                (chk >= fixed.length() && match.getType().equals("suffix")) ||
+                                                this.isPunctuation(fixed.charAt(chk))
+                                            ) ^ match.isNegative()
+                                        ) {
+                                            replace = false;
+                                            break;
+                                        }
+                                    }
+                                    // Vowel
+                                    else if(match.getScope().equals("vowel")) {
+                                        if(
+                                            ! (
+                                                (
+                                                    (chk >= 0 && match.getType().equals("prefix")) ||
+                                                    (chk < fixed.length() && match.getType().equals("suffix"))
+                                                ) &&
+                                                this.isVowel(fixed.charAt(chk))
+                                            ) ^ match.isNegative()
+                                        ) {
+                                            replace = false;
+                                            break;
+                                        }
+                                    }
+                                    // Consonant
+                                    else if(match.getScope().equals("consonant")) {
+                                        if(
+                                            ! (
+                                                (
+                                                    (chk >= 0 && match.getType().equals("prefix")) ||
+                                                    (chk < fixed.length() && match.getType().equals("suffix"))
+                                                ) &&
+                                                this.isConsonant(fixed.charAt(chk))
+                                            ) ^ match.isNegative()
+                                        ) {
+                                            replace = false;
+                                            break;
+                                        }
+                                    }
+                                    // Exact
+                                    else if(match.getScope().equals("exact")) {
+                                        int s, e;
+                                        if(match.getType().equals("suffix")) {
+                                            s = end;
+                                            e = end + match.getValue().length();
+                                        }
+                                        // Prefix
+                                        else {
+                                            s = start - match.getValue().length();
+                                            e = start;
+                                        }
+                                        if(!this.isExact(match.getValue(), fixed, s, e, match.isNegative())) {
+                                            replace = false;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                if(replace) {
+                                    output += rule.getReplace();
+                                    cur = end - 1;
+                                    matched = true;
                                     break;
                                 }
-                            }
-                            // Vowel
-                            else if(match.getScope().equals("vowel")) {
-                                if(
-                                    ! (
-                                        (
-                                            (chk >= 0 && match.getType().equals("prefix")) ||
-                                            (chk < fixed.length() && match.getType().equals("suffix"))
-                                        ) &&
-                                        this.isVowel(fixed.charAt(chk))
-                                    ) ^ match.isNegative()
-                                ) {
-                                    replace = false;
-                                    break;
-                                }
-                            }
-                            // Consonant
-                            else if(match.getScope().equals("consonant")) {
-                                if(
-                                    ! (
-                                        (
-                                            (chk >= 0 && match.getType().equals("prefix")) ||
-                                            (chk < fixed.length() && match.getType().equals("suffix"))
-                                        ) &&
-                                        this.isConsonant(fixed.charAt(chk))
-                                    ) ^ match.isNegative()
-                                ) {
-                                    replace = false;
-                                    break;
-                                }
-                            }
-                            // Exact
-                            else if(match.getScope().equals("exact")) {
-                                int s, e;
-                                if(match.getType().equals("suffix")) {
-                                    s = end;
-                                    e = end + match.getValue().length();
-                                }
-                                // Prefix
-                                else {
-                                    s = start - match.getValue().length();
-                                    e = start;
-                                }
-                                if(!this.isExact(match.getValue(), fixed, s, e, match.isNegative())) {
-                                    replace = false;
-                                    break;
-                                }
-                            }
-                        }
 
-                        if(replace) {
-                            output += rule.getReplace();
+                            }
+
+                            if(matched == true) break;
+
+                            // Default
+                            output += pattern.getReplace();
                             cur = end - 1;
                             matched = true;
                             break;
+                        } else if (pattern.getFind().length() > chunk.length() ||
+                                (pattern.getFind().length() == chunk.length() &&
+                                pattern.getFind().compareTo(chunk) < 0)) {
+                            left = mid + 1;
+                        } else {
+                            right = mid - 1;
                         }
-
                     }
-
                     if(matched == true) break;
-
-                    // Default
-                    output += pattern.getReplace();
-                    cur = end - 1;
-                    matched = true;
-                    break;
                 }
             }
 

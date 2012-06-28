@@ -70,7 +70,7 @@ public class Pattern implements Comparable<Pattern> {
             return 1;
         }
         else if(this.find.length() == p.getFind().length()) {
-            return 0;
+            return this.find.compareTo(p.getFind());
         } else {
             return -1;
         }
